@@ -73,6 +73,12 @@
 
         <script src="{{ mix('js/backend.js') }}"></script>
 
+        <script src="{{ mix('js/app.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
+        
+        <script src="/vendor/datatables/buttons.server-side.js"></script>
+
         @stack('after-scripts')
         <!-- / Scripts -->
 
