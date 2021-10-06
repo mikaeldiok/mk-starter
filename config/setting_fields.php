@@ -23,7 +23,7 @@ return [
                 'label' => 'Footer Text', // you know what label it is
                 'rules' => 'required|min:2', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '<a href="https://github.com/nasirkhan/laravel-starter/">Built with ♥ from Bangladesh</a>', // default value if you want
+                'value' => '<a href="https://github.com/mikaeldiok/mk-starter">Built with ♥ from Indonesia</a>', // default value if you want
             ],
             [
                 'type'  => 'checkbox', // input fields type
@@ -139,7 +139,7 @@ return [
                 'label' => 'Meta Keyword', // you know what label it is
                 'rules' => 'required', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, nasir khan, nasirkhan', // default value if you want
+                'value' => 'Web Application, Laravel,Laravel starter,Bootstrap,Admin,Template,Open,Source, mikael dio, mikaeldiok', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -166,7 +166,7 @@ return [
                 'label' => 'Meta Twitter Site Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '@mikaeldio', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -175,7 +175,7 @@ return [
                 'label' => 'Meta Twitter Creator Account', // you know what label it is
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => '@nasir8891', // default value if you want
+                'value' => '@mikaeldio', // default value if you want
             ],
         ],
     ],
@@ -193,16 +193,7 @@ return [
                 'rules' => '', // validation rule of laravel
                 'class' => '', // any class for input
                 // 'value' => '123', // any class for input
-                'value' => '<!-- Global site tag (gtag.js) - Google Analytics -->
-                            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36770598-2"></script>
-                            <script>
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag("js", new Date());
-
-                            gtag("config", "UA-36770598-2");
-                            </script>
-                            ', // default value if you want
+                'value' => '', // default value if you want
                 'help'     => 'Paste the tracking code in this field.', // Help text for the input field.
                 'display'  => 'raw', // Help text for the input field.
             ],
