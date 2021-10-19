@@ -18,9 +18,9 @@
         <strong>Privacy Policy</strong>
 
         <p>
-            Nasir Khan Saikat built the {{ config('app.name') }} app as
+            mikaeldiok Saikat built the {{ config('app.name') }} app as
             an Open Source app. This SERVICE is provided by
-            Nasir Khan Saikat at no cost and is intended for use as
+            mikaeldiok Saikat at no cost and is intended for use as
             is.
         </p> <p>
             This page is used to inform visitors regarding my
