@@ -29,6 +29,8 @@
     @stack('after-styles')
 
     <x-google-analytics />
+
+    @livewireStyles
     
 </head>
 <body class="c-app">
@@ -78,6 +80,7 @@
         <script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
         
         <script src="/vendor/datatables/buttons.server-side.js"></script>
+        @livewireScripts
 
         @stack('after-scripts')
         <!-- / Scripts -->
