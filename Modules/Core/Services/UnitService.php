@@ -16,8 +16,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
-use Modules\Core\Events\Backend\UnitCreated;
+
+use Modules\Core\Imports\UnitsImport;
 
 class UnitService{
 
@@ -251,6 +253,19 @@ class UnitService{
             'error'=> false,            
             'message'=> '',
             'data'=> $units,
+        );
+    }
+
+    public function import(Request $request){
+                 
+        $import = Excel::import(new UnitsImport, $request->file('data_file'));
+
+        
+    
+        return (object) array(
+            'error'=> false,            
+            'message'=> '',
+            'data'=> $import,
         );
     }
 }
