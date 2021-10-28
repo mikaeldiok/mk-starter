@@ -129,6 +129,7 @@ return [
             'notifications' => ['path' => 'Notifications', 'generate' => false],
             'resource'      => ['path' => 'Transformers', 'generate' => false],
             'imports'       => ['path' => 'Imports', 'generate' => true],
+            'datatables'    => ['path' => 'DataTables', 'generate' => true],
         ],
     ],
     /*

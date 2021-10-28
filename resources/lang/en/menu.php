@@ -18,10 +18,9 @@ return [
         'tiers'             => 'Tiers',
     ],
 
-    'message' => [
-        'title'             => 'Message',
-        'template'          => 'Template',
-        'message_tracker'   => 'Message Tracler',
+    'benefactor' => [
+        'title'             => 'Benefactor',
+        'donators'           => 'Donator',
     ],
 
     'blog' => [

@@ -18,11 +18,11 @@ return [
         'tiers'             => 'Kelas / Jurusan',
     ],
 
-    'message' => [
-        'title'             => 'Pesan',
-        'template'          => 'Template Pesan',
-        'message_tracker'   => 'Lacak Pesan',
+    'benefactor' => [
+        'title'             => 'Donatur',
+        'donators'          => 'Donatur',
     ],
+
 
     'blog' => [
         'title'             => 'Blog',
