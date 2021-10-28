@@ -1,86 +1,38 @@
-@extends('backend.layouts.app')
+@extends('frontend.layouts.app')
 
-@section('title') {{ __($module_action) }} {{ $module_title }} @stop
-
-@section('breadcrumbs')
-<x-backend-breadcrumbs>
-    <x-backend-breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ $module_title }}</x-backend-breadcrumb-item>
-</x-backend-breadcrumbs>
-@stop
+@section('title') {{ __("Posts") }} @endsection
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ $module_title }} <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-muted">
-                    @lang(":module_name Management Dashboard", ['module_name'=>Str::title($module_name)])
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="float-right">
-                    @can('add_'.$module_name)
-                        <x-buttons.create route='{{ route("backend.$module_name.create") }}' title="{{__('Create')}} {{ ucwords(Str::singular($module_name)) }}"/>
-                    @endcan
 
-                    <div class="btn-group" role="group" aria-label="Toolbar button groups">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupToolbar" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupToolbar">
-                                @can('delete_'.$module_name)
-                                    <a class="dropdown-item" href="{{ route("backend.$module_name.trashed") }}">
-                                        <i class="fas fa-eye-slash"></i> View trash
-                                    </a>
-                                @endcan
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+<section class="section-header bg-primary text-white pb-7 pb-lg-11">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 text-center">
+                <h1 class="display-2 mb-4">
+                    The Super Articles
+                    {{\Auth::guard('donator')->user()}}
+                </h1>
+                <p class="lead">
+                    We publish articles on a number of topics. We encourage you to read our posts and let us know your feedback. It would be really help us to move forward.
+                </p>
 
-        <div class="row mt-4">
-            <div class="col">
-                <div class="table-responsive">
-                    <table class="table">
-                        {{ $dataTable->table() }}
-                    </table>
-                </div>
+                @include('frontend.includes.messages')
             </div>
         </div>
     </div>
-    <div class="card-footer">
+    <div class="pattern bottom"></div>
+</section>
+
+<section class="section section-lg line-bottom-light">
+    <div class="container mt-n7 mt-lg-n12 z-2">
         <div class="row">
-            <div class="col-7">
-                <div class="float-left">
+           
+        </div>
 
-                </div>
-            </div>
-            <div class="col-5">
-                <div class="float-right">
-
-                </div>
-            </div>
+        <div class="d-flex justify-content-center w-100 mt-3">
+            
         </div>
     </div>
-</div>
-@stop
+</section>
 
-@push ('after-styles')
-<!-- DataTables Benefactor and Extensions -->
-<link rel="stylesheet" href="{{ asset('vendor/datatable/datatables.min.css') }}">
-
-@endpush
-
-@push ('after-scripts')
-<!-- DataTables Benefactor and Extensions -->
-{!! $dataTable->scripts()  !!}
-@endpush
+@endsection

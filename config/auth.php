@@ -37,7 +37,7 @@ return [
 
     'guards' => [
         'donator' => [
-            'redirectTo' => 'donators-area.index',
+            'redirectTo' => 'benefactor::frontend.donators.index',
             'driver'     => 'session',
             'provider'   => 'donators',
         ],

@@ -52,11 +52,6 @@ Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Frontend', 'a
      */
     $module_name = 'donators';
     $controller_name = 'DonatorsController';        
-    Route::get("$module_name/index", ['as' => "$module_name.index", 'uses' => "$controller_name@index_list"]);
-
-
-    $module_name = 'donators-area';
-    $controller_name = 'DonatorsAreaController';        
     Route::get("$module_name/home", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
 
 });

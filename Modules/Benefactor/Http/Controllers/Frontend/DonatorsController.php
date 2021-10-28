@@ -17,6 +17,8 @@ class DonatorsController extends Controller
 
     public function __construct(DonatorService $donatorService)
     {
+        $this->middleware('auth:donator');
+
         // Page Title
         $this->module_title = trans('menu.benefactor.donators');
 
@@ -27,7 +29,7 @@ class DonatorsController extends Controller
         $this->module_path = 'donators';
 
         // module icon
-        $this->module_icon = 'fas fa-user-te';
+        $this->module_icon = 'fas fa-user-tie';
 
         // module model name, path
         $this->module_model = "Modules\Donator\Entities\Donator";
@@ -36,26 +38,15 @@ class DonatorsController extends Controller
     }
 
     /**
-     * Get Path By Donator.
+     * Go to donator homepage
      *
      * @param Request $request
      * @param int     $id
      *
      * @return Response
      */
-    public function getDonatorOpt($id)
+    public function index()
     {
-        $module_title = $this->module_title;
-        $module_name = $this->module_name;
-        $module_path = $this->module_path;
-        $module_icon = $this->module_icon;
-        $module_model = $this->module_model;
-        $module_name_singular = Str::singular($module_name);
-
-        $module_action = 'get Path';
-
-        $paths = $this->donatorService->getDonatorOpt($id);
-        
-        return response()->json($paths);
+        return view('benefactor::frontend.donators.index');
     }
 }

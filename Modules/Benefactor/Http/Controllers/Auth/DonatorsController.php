@@ -20,7 +20,7 @@ use Yajra\DataTables\DataTables;
 
 class DonatorsController extends DefaultLoginController
 {
-    protected $redirectTo = '/donators-area/home';
+    protected $redirectTo = '/donators/home';
     protected $donatorService;
 
     public function __construct(DonatorService $donatorService)
