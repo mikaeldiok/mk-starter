@@ -77,6 +77,7 @@ class DonatorsDataTable extends DataTable
      */
     public function html()
     {
+        $created_at = 8;
         return $this->builder()
                 ->setTableId('donators-table')
                 ->columns($this->getColumns())
@@ -112,6 +113,7 @@ class DonatorsDataTable extends DataTable
             Column::make('donator_name'),
             Column::make('donator_email'),
             Column::make('donator_phone'),
+            Column::make('donator_type')->hidden(),
             Column::make('donator_bank_code')->hidden(),
             Column::make('donator_bank_name'),
             Column::make('donator_bank_account'),

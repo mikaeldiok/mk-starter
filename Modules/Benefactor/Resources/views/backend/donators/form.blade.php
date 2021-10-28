@@ -13,6 +13,22 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-md-5">
+        <div class="form-group">
+            <?php
+            $field_name = 'donator_type';
+            $field_data_id = 'donator_type';
+            $field_lable = __("benefactor::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
+            $required = "required";
+            $select_options = $donator_types;
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-6">
         <div class="form-group">
             <?php

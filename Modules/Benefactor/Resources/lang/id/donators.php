@@ -4,6 +4,7 @@ return [
 
     'donator_name'                      => 'Nama',
     'donator_email'                     => 'Email',
+    'donator_type'                      => 'Jenis Donatur',
     'donator_phone'                     => 'No. Telepon',
     'donator_address'                   => 'Alamat',
     'password'                  => 'Password',

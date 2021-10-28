@@ -66,10 +66,11 @@ class DonatorsController extends DefaultLoginController
         $options_data = $options->data;
 
         $banks = $options_data['banks'];
+        $donator_types = $options_data['donator_types'];
 
         return view(
             'benefactor::auth.register',
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','banks')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','banks', 'donator_types')
         );
     }
 

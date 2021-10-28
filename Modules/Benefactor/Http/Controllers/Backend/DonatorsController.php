@@ -110,10 +110,11 @@ class DonatorsController extends Controller
         $options_data = $options->data;
 
         $banks = $options_data['banks'];
+        $donator_types = $options_data['donator_types'];
 
         return view(
             "benefactor::backend.$module_name.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','banks')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','banks','donator_types')
         );
     }
 
@@ -201,10 +202,11 @@ class DonatorsController extends Controller
         $options = $this->donatorService->prepareOptions();
 
         $bank_names = $options['bank_names'];
+        $donator_types = $options['donator_types'];
 
         return view(
             "benefactor::backend.$module_name.edit",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'bank_names')
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'bank_names','donator_types')
         );
     }
 

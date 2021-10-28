@@ -154,11 +154,8 @@ class DonatorService{
 
         try{
             $donator = $this->donatorRepository->make($data);
-            
-            $donatorArray = $donator->toArray();
-            $donatorArray['password'] = Hash::make($data['password']);
 
-            $updated = $this->donatorRepository->update($donatorArray,$id);
+            $updated = $this->donatorRepository->update($donator->toArray(),$id);
 
             $updated_donator = $this->donatorRepository->findOrFail($id);
             
@@ -304,9 +301,15 @@ class DonatorService{
             $bank_names = Arr::add($bank_names, $raw_bank['name'], $raw_bank['name'] );
         }
 
+        $donator_types = [
+            'institusi'     => 'Institusi',
+            'perorangan'     => 'Perorangan',
+        ];
+
         $options = array(
-            'banks' => $banks,
-            'bank_names' => $bank_names
+            'banks'         => $banks,
+            'bank_names'    => $bank_names,
+            'donator_types' => $donator_types,
         );
 
         return $options;

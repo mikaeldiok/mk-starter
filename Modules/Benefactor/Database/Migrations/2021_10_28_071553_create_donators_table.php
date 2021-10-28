@@ -20,6 +20,7 @@ class CreateDonatorsTable extends Migration
             $table->string('donator_phone')->nullable();
             $table->text('donator_address')->nullable();
             $table->string('password')->nullable();
+            $table->string('donator_type')->nullable();
             $table->string('donator_bank_code')->nullable();
             $table->string('donator_bank_name')->nullable();
             $table->string('donator_bank_account')->nullable();
