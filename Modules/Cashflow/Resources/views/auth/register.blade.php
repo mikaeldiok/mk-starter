@@ -59,10 +59,10 @@
                         </div>
                         @endif
 
-                        <form role="form" method="POST" action="{{ route('auth.donators.register') }}">
+                        <form role="form" method="POST" action="{{ route('auth.Donations.register') }}">
                             @csrf
                             
-                            @include('benefactor::auth.register-form')
+                            @include('Cashflow::auth.register-form')
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="col-6 text-right">
-                        <a href="{{ route('auth.donators.login') }}" class="text-primary">
+                        <a href="{{ route('auth.Donations.login') }}" class="text-primary">
                             <small>{{ __('Login to account') }}</small>
                         </a>
                     </div>

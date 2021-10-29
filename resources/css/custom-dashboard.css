@@ -9,4 +9,9 @@
 .border-purple {
     border-color: #8965e0 !important;
 }
+
+.alert-success {
+    background-color: #029f5a;
+    border-color: #4fd69c;
+  }
   

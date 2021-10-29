@@ -90,9 +90,9 @@ class DonatorsController extends DefaultLoginController
         $$module_name_singular = $donators->data;
 
         if(!$donators->error){
-            Flash::success('<i class="fas fa-check"></i> '.label_case($module_name_singular).' Data Added Successfully!')->important();
+            Flash::success('<i class="fas fa-check"></i>  Selamat anda sudah terdaftar, silakan langsung masuk dengan menggunakan email dan password anda!')->important();
         }else{
-            Flash::error("<i class='fas fa-times-circle'></i> Error When ".$module_action." '".Str::singular($module_title)."'")->important();
+            Flash::error("<i class='fas fa-times-circle'></i> Error saat ".$module_action." '".Str::singular($module_title)."'")->important();
         }
 
         return redirect("$module_name/login");

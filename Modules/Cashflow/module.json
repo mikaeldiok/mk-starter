@@ -1,0 +1,13 @@
+{
+    "name": "Cashflow",
+    "alias": "cashflow",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Cashflow\\Providers\\CashflowServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

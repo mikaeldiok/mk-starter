@@ -3,6 +3,6 @@
     "Tag": true,
     "Comment": true,
     "Core": false,
-
-    "Benefactor": true
+    "Benefactor": true,
+    "Cashflow": true
 }
