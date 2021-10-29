@@ -1,0 +1,13 @@
+{
+    "name": "Fund",
+    "alias": "fund",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Fund\\Providers\\FundServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

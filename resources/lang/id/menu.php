@@ -23,6 +23,10 @@ return [
         'donators'          => 'Donatur',
     ],
 
+    'fund' => [
+        'title'             => 'Dana',
+        'donations'           => 'Donasi',
+    ],
 
     'blog' => [
         'title'             => 'Blog',
