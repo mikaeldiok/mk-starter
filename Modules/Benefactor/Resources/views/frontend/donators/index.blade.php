@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('benefactor::frontend.layouts.app')
 
 @section('title') {{ __("Posts") }} @endsection
 

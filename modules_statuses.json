@@ -2,7 +2,7 @@
     "Article": true,
     "Tag": true,
     "Comment": true,
-    "Core": true,
+    "Core": false,
 
     "Benefactor": true
 }
