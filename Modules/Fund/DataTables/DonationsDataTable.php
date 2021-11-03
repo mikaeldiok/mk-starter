@@ -46,6 +46,9 @@ class DonationsDataTable extends DataTable
                     return $data->updated_at->isoFormat('LLLL');
                 }
             })
+            ->editColumn('amount',function($data){
+                return 'Rp. '.number_format($data->amount ?? 0 , 2, ',', '.');
+            })
             ->editColumn('created_at', function ($data) {
                 $module_name = $this->module_name;
 
@@ -65,7 +68,9 @@ class DonationsDataTable extends DataTable
     public function query()
     {
         $user = auth()->user();
-        $data = $this->donationRepository->query();
+        $data = $this->donationRepository->query()
+                ->select('donations.*')
+                ->with(['donator']);
 
         return $this->applyScopes($data);
     }
@@ -110,14 +115,14 @@ class DonationsDataTable extends DataTable
                   ->exportable(false)
                   ->printable(false)
                   ->addClass('text-center'),
-            Column::make('donation_name'),
-            Column::make('donation_email'),
-            Column::make('donation_phone'),
-            Column::make('donation_type')->hidden(),
-            Column::make('donation_bank_code')->hidden(),
-            Column::make('donation_bank_name'),
-            Column::make('donation_bank_account'),
-            Column::make('created_at'),
+            Column::make('id')->hidden(),
+            Column::make('donator_id')->hidden(),
+            Column::make('donator.donator_name')->title("Nama"),
+            Column::make('donator.donator_bank_name')->title("Bank"),
+            Column::make('donator.donator_bank_account')->title("Rekening"),
+            Column::make('amount'),
+            Column::make('donation_date'),
+            Column::make('created_at')->hidden(),
             Column::make('updated_at')->hidden(),
         ];
     }

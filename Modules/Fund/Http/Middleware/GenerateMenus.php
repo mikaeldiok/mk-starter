@@ -19,7 +19,7 @@ class GenerateMenus
         \Menu::make('admin_sidebar', function ($menu) {
             //fund menu
 
-            $menu->add('<i class="fas fa-user-tie c-sidebar-nav-icon"></i> '.trans('menu.fund.donations'), [
+            $menu->add('<i class="fas fa-wallet c-sidebar-nav-icon"></i> '.trans('menu.fund.donations'), [
                 'route' => 'backend.donations.index',
                 'class' => 'c-sidebar-nav-item',
             ])

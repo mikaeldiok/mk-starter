@@ -24,7 +24,7 @@
             $select_options = $donator_types;
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
         </div>
     </div>
 </div>

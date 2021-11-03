@@ -16,81 +16,32 @@ use Spatie\Permission\Traits\HasRoles;
 
 
 
-class Donation extends UserModel implements HasMedia
+class Donation extends Basemodel
 {
-    use HasHashedMediaTrait;
-    use HasRoles;
-
     use HasFactory;
+    use LogsActivity;
     use SoftDeletes;
 
-    protected $table = "donations";
+    protected $table = 'donations';
 
     protected static $logName = 'donations';
     protected static $logOnlyDirty = true;
-    protected static $logAttributes = ['name', 'id'];
-    
-    protected $guarded = [
-        'id',
-        'updated_at',
-        '_token',
-        '_method',
-    ];
+    protected static $logAttributes = ['name', 'donation_id'];
 
-    protected $hidden = [
-     'password', 'remember_token',
-    ];
     
-    protected static function boot()
+    public function donator()
     {
-        parent::boot();
-
-        // create a event to happen on creating
-        static::creating(function ($table) {
-            $table->created_by = Auth::id();
-            $table->created_at = Carbon::now();
-        });
-
-        // create a event to happen on updating
-        static::updating(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on saving
-        static::saving(function ($table) {
-            $table->updated_by = Auth::id();
-        });
-
-        // create a event to happen on deleting
-        static::deleting(function ($table) {
-            $table->deleted_by = Auth::id();
-            $table->save();
-        });
-    }
-    
-    public function getAuthPassword()
-    {
-     return $this->password;
+        return $this->belongsTo('Modules\Benefactor\Entities\Donator');
     }
 
-    protected static function newFactory()
-    {
-        return \Modules\Fund\Database\factories\DonationFactory::new();
-    }
 
     /**
-     * Create Converted copies of uploaded images.
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function registerMediaConversions(Media $media = null): void
+    protected static function newFactory()
     {
-        $this->addMediaConversion('thumb')
-              ->width(250)
-              ->height(250)
-              ->quality(70);
-
-        $this->addMediaConversion('thumb300')
-              ->width(300)
-              ->height(300)
-              ->quality(70);
+        return \Modules\Fund\Database\Factories\DonationFactory::new();
     }
 }

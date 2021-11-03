@@ -3,6 +3,7 @@
 namespace Modules\Benefactor\Entities;
 
 use Auth;
+use DB;
 use Carbon\Carbon;
 use App\Models\BaseModel;
 use App\Models\Traits\HasHashedMediaTrait;
@@ -78,6 +79,10 @@ class Donator extends UserModel implements HasMedia
         return \Modules\Benefactor\Database\factories\DonatorFactory::new();
     }
 
+    public function donations(){
+        return $this->hasMany('Modules\Fund\Entities\Donation');
+    }
+
     /**
      * Create Converted copies of uploaded images.
      */
@@ -93,4 +98,34 @@ class Donator extends UserModel implements HasMedia
               ->height(300)
               ->quality(70);
     }
+
+
+    /**
+     * Get the list of all the Columns of the table.
+     *
+     * @return array Column names array
+     */
+    public function getTableColumns()
+    {
+        //determine connections
+        $connection = config('database.default');
+        $driver = config("database.connections.{$connection}.driver");
+        
+        switch($driver){
+            case 'mysql':
+                    $table_info_columns = DB::select(DB::raw('SHOW COLUMNS FROM '.$this->getTable()));
+                break;
+            case 'pgsql':       
+                    $table_info_columns = DB::select(DB::raw(
+                        "SELECT data_type as Type, column_name as Field
+                            FROM information_schema.columns
+                        Where table_schema = 'public'    
+                        AND table_name   = '".$this->getTable()."'"
+                    ));
+                break;
+        }   
+
+        return $table_info_columns;
+    }
 }
+

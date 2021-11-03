@@ -3,7 +3,7 @@
 </p>
 <table class="table table-responsive-sm table-hover table-bordered">
     <?php
-    $all_columns = $$module_name_singular->getTableColumns();
+      $all_columns = $$module_name_singular->getTableColumns();
     ?>
     <thead>
         <tr>
@@ -21,19 +21,21 @@
     </thead>
     <tbody>
         @foreach ($all_columns as $column)
-        <tr>
-            <td>
-                <strong>
-                    {{ label_case($column->Field) }}
-                </strong>
-            </td>
-            <td>
-                {!! show_column_value($$module_name_singular, $column) !!}
-            </td>
-        </tr>
+            @if($column->Field ?? $column->field != "password")
+                <tr>
+                    <td>
+                        <strong>
+                            {{ label_case($column->Field ?? $column->field) }}
+                        </strong>
+                    </td>
+                    <td>
+                        {!! show_column_value($$module_name_singular, $column) !!}
+                    </td>
+                </tr>
+            @endif
         @endforeach
     </tbody>
 </table>
 
-{{-- Lightbox2 Library --}}
-<x-library.lightbox />
+<!-- Lightbox2 Library -->
+<x-library.lightbox/>

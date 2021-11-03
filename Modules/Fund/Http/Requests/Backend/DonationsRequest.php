@@ -24,9 +24,7 @@ class DonationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'donation_name'              => 'required|max:191',
-            'donation_phone'    => 'nullable|numeric',
-            'donation_email'     => 'nullable|email',
+            'amount'    => 'nullable|numeric',
         ];
     }
 }

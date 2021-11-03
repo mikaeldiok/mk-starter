@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Log;
+use Auth;
 use Modules\Benefactor\Services\DonatorService;
 use Spatie\Activitylog\Models\Activity;
 
@@ -47,6 +48,32 @@ class DonatorsController extends Controller
      */
     public function index()
     {
-        return view('benefactor::frontend.donators.index');
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Show';
+
+        $donators = $this->donatorService->show(Auth::user()->id);
+
+        $$module_name_singular = $donators->data;
+
+        //determine connections
+        $connection = config('database.default');
+        $driver = config("database.connections.{$connection}.driver");
+
+        $activities = Activity::where('subject_type', '=', $module_model)
+            ->where('log_name', '=', $module_name)
+            ->where('subject_id', '=', Auth::user()->id)
+            ->latest()
+            ->paginate();
+
+        return view(
+            "benefactor::frontend.$module_name.index",
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'activities','driver')
+        );
     }
 }

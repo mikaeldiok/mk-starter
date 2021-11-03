@@ -28,7 +28,7 @@ class DonationsController extends Controller
         $this->module_path = 'donations';
 
         // module icon
-        $this->module_icon = 'fas fa-user-tie';
+        $this->module_icon = 'fas fa-wallet';
 
         // module model name, path
         $this->module_model = "Modules\Donation\Entities\Donation";

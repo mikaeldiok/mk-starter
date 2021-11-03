@@ -35,7 +35,7 @@ class DonationsController extends Controller
         $this->module_path = 'donations';
 
         // module icon
-        $this->module_icon = 'fas fa-user-tie';
+        $this->module_icon = 'fas fa-wallet';
 
         // module model name, path
         $this->module_model = "Modules\Fund\Entities\Donation";
@@ -109,12 +109,11 @@ class DonationsController extends Controller
 
         $options_data = $options->data;
 
-        $banks = $options_data['banks'];
-        $donation_types = $options_data['donation_types'];
+        $donators = $options_data['donators'];
 
         return view(
             "fund::backend.$module_name.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','banks','donation_types')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','donators')
         );
     }
 
@@ -201,12 +200,11 @@ class DonationsController extends Controller
 
         $options = $this->donationService->prepareOptions();
 
-        $bank_names = $options['bank_names'];
-        $donation_types = $options['donation_types'];
+        $donators = $options['donators'];
 
         return view(
             "fund::backend.$module_name.edit",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'bank_names','donation_types')
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'donators')
         );
     }
 

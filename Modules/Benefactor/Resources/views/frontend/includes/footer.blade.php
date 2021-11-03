@@ -1,4 +1,4 @@
-@include ('frontend.includes.footer-comment-area')
+@include ('benefactor::frontend.includes.footer-comment-area')
 
 <footer class="footer section pt-2 pt-md-2 pt-lg-4 pb-3 bg-primary text-white overflow-hidden">
     <div class="container">

@@ -3,6 +3,7 @@
 namespace Modules\Fund\Services;
 
 use Modules\Fund\Repositories\DonationRepository;
+use Modules\Benefactor\Repositories\DonatorRepository;
 
 use Exception;
 use Carbon\Carbon;
@@ -25,12 +26,15 @@ use Modules\Fund\Imports\DonationsImport;
 class DonationService{
 
     protected $donationRepository;
+    protected $donatorRepository;
 
     public function __construct(
-        DonationRepository $donationRepository
+        DonationRepository $donationRepository,
+        DonatorRepository $donatorRepository
         )
         {        
         $this->donationRepository = $donationRepository;
+        $this->donatorRepository = $donatorRepository;
 
         $this->module_title = Str::plural(class_basename($this->donationRepository->model()));
 
@@ -89,14 +93,8 @@ class DonationService{
         try {
             $donationObject = $this->donationRepository->make($data);
 
-            $bank = preg_split('/-/',$data['donation_bank_name']);
-
-            $donationObject->donation_bank_code = $bank[0];
-            $donationObject->donation_bank_name = $bank[1];
-
             $donationObjectArray = $donationObject->toArray();
-            $donationObjectArray['password'] = Hash::make($data['password']);
-
+            
             $donation = $this->donationRepository->create($donationObjectArray);
 
         }catch (Exception $e){
@@ -291,25 +289,10 @@ class DonationService{
 
     public function prepareOptions(){
         
-        $banks= [];
-        $bank_names= [];
-
-        $raw_banks = config('banks');
-
-        foreach($raw_banks as $raw_bank){
-            $banks = Arr::add($banks, $raw_bank['code'].'-'.$raw_bank['name'], $raw_bank['code'].' - '.$raw_bank['name'] );
-            $bank_names = Arr::add($bank_names, $raw_bank['name'], $raw_bank['name'] );
-        }
-
-        $donation_types = [
-            'institusi'     => 'Institusi',
-            'perorangan'     => 'Perorangan',
-        ];
+        $donators = $this->donatorRepository->pluck("donator_name","id");
 
         $options = array(
-            'banks'         => $banks,
-            'bank_names'    => $bank_names,
-            'donation_types' => $donation_types,
+            'donators' => $donators,
         );
 
         return $options;

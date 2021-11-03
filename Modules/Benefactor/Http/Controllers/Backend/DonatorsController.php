@@ -171,9 +171,19 @@ class DonatorsController extends Controller
 
         $$module_name_singular = $donators->data;
 
+        //determine connections
+        $connection = config('database.default');
+        $driver = config("database.connections.{$connection}.driver");
+
+        $activities = Activity::where('subject_type', '=', $module_model)
+            ->where('log_name', '=', $module_name)
+            ->where('subject_id', '=', $id)
+            ->latest()
+            ->paginate();
+
         return view(
             "benefactor::backend.$module_name.show",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular")
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'activities','driver')
         );
     }
 

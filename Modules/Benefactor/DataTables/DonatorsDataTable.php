@@ -33,7 +33,7 @@ class DonatorsDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $module_name = $this->module_name;
 
-                return view('backend.includes.action_column_admin', compact('module_name', 'data'));
+                return view('backend.includes.action_column', compact('module_name', 'data'));
             })
             ->editColumn('updated_at', function ($data) {
                 $module_name = $this->module_name;

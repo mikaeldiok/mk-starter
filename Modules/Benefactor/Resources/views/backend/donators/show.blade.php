@@ -12,6 +12,13 @@
 @endsection
 
 @section('content')
+<?php
+    //Total Donations
+    $total = 0;
+    foreach($$module_name_singular->donations as $donation){
+        $total += $donation->amount;
+    }
+?>
 <div class="card">
     <div class="card-body">
         <div class="row">
@@ -36,52 +43,60 @@
         </div>
         <!--/.row-->
 
-        <hr>
 
-        <div class="row mt-4">
-            <div class="col-12 col-sm-6">
+        <!-- Tab panes -->
 
-                @include('backend.includes.show')
+        <div class="mt-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="donasi-tab" data-toggle="tab" href="#donasi" role="tab" aria-controls="donasi" aria-selected="true">Donasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detail</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="donasi" role="tabpanel" aria-labelledby="donasi-tab">
+                    <h4 class="text-primary text-center my-4">Riwayat Donasi</h4>
+                    
+                    <tr>
+                        <td>
+                            <strong>Total Donasi</strong>  
+                        </td>
+                        <td> 
+                            <h4>Rp. {{number_format($total, 2, ',', '.')}}</h4>                         
+                        </td>
+                    </tr>
 
-            </div>
-            <div class="col-12 col-sm-6">
-
-                <div class="text-center">
-                    <a href="{{route("frontend.$module_name.show", [encode_id($$module_name_singular->id), $$module_name_singular->slug])}}" class="btn btn-success" target="_blank"><i class="fas fa-link"></i> Public View</a>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Nominal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($$module_name_singular->donations as $donation)
+                                <tr>
+                                    <td>
+                                    {{$donation->donation_date}}    
+                                    </td>
+                                    <td> 
+                                        Rp. {{number_format($donation->amount, 2, ',', '.')}}                              
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table> 
                 </div>
-                <hr>
+                <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                    <hr>
+                    @include('backend.includes.show')
 
-                <h4>Category</h4>
-                <ul>
-                    <li>
-                        <a href="{{route('backend.categories.show', $$module_name_singular->category_id)}}">{{$$module_name_singular->category_name}}</a>
-                    </li>
-                </ul>
-                <hr>
-
-                <h4>Tags</h4>
-                <ul>
-                    @foreach($$module_name_singular->tags as $row)
-                    <li>
-                        <a href="{{route('backend.tags.show', $row->id)}}">{{$row->name}}</a>
-                    </li>
-                    @endforeach
-                </ul>
-                <hr>
-
-                <h4>Comments</h4>
-                <ul>
-                    @foreach($$module_name_singular->comments as $row)
-                    <li>
-                        <a href="{{route('backend.comments.show', $row->id)}}">{{$row->name}}</a> by {{$row->user_name}}
-                    </li>
-                    @endforeach
-                </ul>
-                <hr>
-
-                @include('benefactor::backend.includes.activitylog')
-                <hr>
-
+                    <hr>
+                        @include('benefactor::backend.includes.activitylog')
+                    <hr>
+                </div>
             </div>
         </div>
     </div>

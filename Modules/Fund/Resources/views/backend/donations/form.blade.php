@@ -1,8 +1,24 @@
 <div class="row">
-    <div class="col">
+    <div class="col-6">
         <div class="form-group">
             <?php
-            $field_name = 'donation_name';
+            $field_name = 'donator_id';
+            $field_data_id = 'donator_id';
+            $field_lable = __("fund::$module_name.$field_name");
+            $field_placeholder = __("Select an option");
+            $required = "required";
+            $select_options = $donators;
+            ?>
+            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
+            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="form-group">
+            <?php
+            $field_name = 'amount';
             $field_lable = __("fund::$module_name.$field_name");
             $field_placeholder = $field_lable;
             $required = "required";
@@ -13,140 +29,21 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-5">
-        <div class="form-group">
-            <?php
-            $field_name = 'donation_type';
-            $field_data_id = 'donation_type';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = __("Select an option");
-            $required = "required";
-            $select_options = $donation_types;
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-6">
         <div class="form-group">
             <?php
-            $field_name = 'donation_email';
+            $field_name = 'donation_date';
             $field_lable = __("fund::$module_name.$field_name");
             $field_placeholder = $field_lable;
-            $required = "required";
+            $required = "";
             ?>
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->email($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image']) }}
-        </div>
-    </div>
-</div>
-@if($module_action != "Edit")
-<div class="row">
-    <div class="col-6">
-        <div class="form-group">
-            <?php
-            $field_name = 'password';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = $field_lable;
-            $required = "required";
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->password($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image']) }}
-        </div>
-    </div>
-</div>
-@endif
-<div class="row">
-    <div class="col-6">
-        <div class="form-group">
-            <?php
-            $field_name = 'donation_phone';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = $field_lable;
-            $required = "required";
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image']) }}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <div class="form-group">
-            <?php
-            $field_name = 'donation_address';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = $field_lable;
-            $required = "required";
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->textarea($field_name)->rows(5)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
-        </div>
-    </div>
-</div>
-@if($module_action == "Edit")
-    <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <?php
-                $field_name = 'donation_bank_code';
-                $field_lable = __("fund::$module_name.$field_name");
-                $field_placeholder = $field_lable;
-                $required = "required";
-                ?>
-                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required"]) }}
+            <div class="input-group date" id="{{$field_name}}" data-target-input="nearest">
+                {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control datetimepicker-input')->attributes(["$required", 'data-target'=>"#$field_name"]) }}
+                <div class="input-group-append" data-target="#{{$field_name}}" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <div class="form-group">
-                <?php
-                $field_name = 'donation_bank_name';
-                $field_data_id = 'donation_bank_name';
-                $field_lable = __("fund::$module_name.$field_name");
-                $field_placeholder = __("Select an option");
-                $required = "required";
-                $select_options = $bank_names;
-                ?>
-                {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-                {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
-            </div>
-        </div>
-    </div>
-@endif
-@if($module_action != "Edit")
-<div class="row">
-    <div class="col-md-5">
-        <div class="form-group">
-            <?php
-            $field_name = 'donation_bank_name';
-            $field_data_id = 'donation_bank_name';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = __("Select an option");
-            $required = "required";
-            $select_options = $banks;
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
-        </div>
-    </div>
-</div>
-@endif
-<div class="row">
-    <div class="col-6">
-        <div class="form-group">
-            <?php
-            $field_name = 'donation_bank_account';
-            $field_lable = __("fund::$module_name.$field_name");
-            $field_placeholder = $field_lable;
-            $required = "required";
-            ?>
-            {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class('form-control')->attributes(["$required", 'aria-label'=>'Image']) }}
         </div>
     </div>
 </div>
@@ -165,8 +62,8 @@
 <!-- Date Time Picker & Moment Js-->
 <script type="text/javascript">
 $(function() {
-    $('.datetime').datetimepicker({
-        format: 'YYYY-MM-DD HH:mm:ss',
+    $('.date').datetimepicker({
+        format: 'YYYY-MM-DD',
         icons: {
             time: 'far fa-clock',
             date: 'far fa-calendar-alt',
