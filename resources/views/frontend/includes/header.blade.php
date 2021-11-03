@@ -43,17 +43,17 @@
                             <div class="dropdown-menu dropdown-menu-lg">
                                 <div class="col-auto px-0" data-dropdown-content>
                                     <div class="list-group list-group-flush">
-                                        @auth
-                                        <!-- <a href="{{ route('frontend.users.profile', auth()->user()->id) }}"
+                                        @auth('donator')
+                                        <a href="{{ route('frontend.donators.index') }}"
                                             class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-success"><i class="fas fa-user"></i></span>
+                                            <span class="icon icon-sm icon-success"><i class="fas fa-house-user"></i></span>
                                             <div class="ml-4">
                                                 <span class="text-dark d-block">
-                                                    {{ Auth::user()->name }}
+                                                    Donator Area
                                                 </span>
-                                                <span class="small">View profile details!</span>
+                                                <span class="small">Masuk ke area donator</span>
                                             </div>
-                                        </a> -->
+                                        </a>
                                         <a href="{{ route('auth.donators.logout') }}"
                                             class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
                                             <span class="icon icon-sm icon-secondary">

@@ -26,138 +26,20 @@
                             <span class="fas fa-file-alt mr-1"></span> Posts
                         </a>
                     </li>
-                    @if(!Auth::guard('web')->check())
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
-                                <span class="nav-link-inner-text mr-1">
-                                    <span class="fas fa-user mr-1"></span>
-                                    Donatur
-                                </span>
-                                <i class="fas fa-angle-down nav-link-arrow"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg">
-                                <div class="col-auto px-0" data-dropdown-content>
-                                    <div class="list-group list-group-flush">
-                                        @auth
-                                        <!-- <a href="{{ route('frontend.users.profile', auth()->user()->id) }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-success"><i class="fas fa-user"></i></span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    {{ Auth::user()->name }}
-                                                </span>
-                                                <span class="small">View profile details!</span>
-                                            </div>
-                                        </a> -->
-                                        <a href="{{ route('auth.donators.logout') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
-                                            <span class="icon icon-sm icon-secondary">
-                                                <i class="fas fa-sign-out-alt"></i>
-                                            </span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    Logout
-                                                </span>
-                                                <span class="small">Logout from your account!</span>
-                                            </div>
-                                        </a>
-                                        <form id="account-logout-form" action="{{ route('auth.donators.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                        @else
-                                        <a href="{{ route('auth.donators.login') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-secondary"><i class="fas fa-key"></i></span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    Login
-                                                </span>
-                                                <span class="small">Login e Area Donatur</span>
-                                            </div>
-                                        </a>
-                                        <a href="{{ route('auth.donators.register') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-primary">
-                                                <i class="fas fa-address-card"></i>
-                                            </span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">Daftar</span>
-                                                <span class="small">Yuk bergabung bersama kami</span>
-                                            </div>
-                                        </a>
-                                        @endauth
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    @endif
-                    @if(!Auth::guard('donator')->check())
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
-                                <span class="nav-link-inner-text mr-1">
-                                    <span class="fas fa-user mr-1"></span>
-                                    Admin
-                                </span>
-                                <i class="fas fa-angle-down nav-link-arrow"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg">
-                                <div class="col-auto px-0" data-dropdown-content>
-                                    <div class="list-group list-group-flush">
-                                        @auth
-                                        <a href="{{ route('frontend.users.profile', auth()->user()->id) }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-success"><i class="fas fa-user"></i></span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    {{ Auth::user()->name }}
-                                                </span>
-                                                <span class="small">View profile details!</span>
-                                            </div>
-                                        </a>
-                                        <a href="{{ route('logout') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
-                                            <span class="icon icon-sm icon-secondary">
-                                                <i class="fas fa-sign-out-alt"></i>
-                                            </span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    Logout
-                                                </span>
-                                                <span class="small">Logout from your account!</span>
-                                            </div>
-                                        </a>
-                                        <form id="account-logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                        @else
-                                        <a href="{{ route('login') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-secondary"><i class="fas fa-key"></i></span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">
-                                                    Login
-                                                </span>
-                                                <span class="small">Login to the application</span>
-                                            </div>
-                                        </a>
-                                        @if(user_registration())
-                                        <a href="{{ route('register') }}"
-                                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="icon icon-sm icon-primary">
-                                                <i class="fas fa-address-card"></i>
-                                            </span>
-                                            <div class="ml-4">
-                                                <span class="text-dark d-block">Register</span>
-                                                <span class="small">Join with us!</span>
-                                            </div>
-                                        </a>
-                                        @endif
-                                        @endauth
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    @endif
+
+                    <!-- small device -->
+                    @auth
+                        <div class="d-lg-none d-md-none d-sm-block d-xs-block">
+                            <li class="nav-item">
+                                <a href="{{ route('auth.donators.logout') }}" class="nav-link text-danger">
+                                    <span class="fas fa-sign-out-alt"></span> Keluar
+                                </a>
+                                <form id="account-logout-form" action="{{ route('auth.donators.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </div>
+                    @endauth
                 </ul>
             </div>
             <div class="d-none d-lg-block">
@@ -165,9 +47,34 @@
                 <a href="{{ route('backend.dashboard') }}" class="btn btn-white animate-up-2 mr-3"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
                 @endcan
 
-                <a href="#" class="btn btn-outline-white animate-up-2 mr-3"><i class="fas fa-th-large mr-2"></i> Support</a>
-
-                <a href="#" target="_blank" class="btn btn-secondary animate-up-2"><i class="fas fa-paper-plane mr-2"></i> Contact</a>
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php
+                            $name = explode(" ", \Auth::user()->donator_name);
+                            $fist_name = $name[0];
+                        ?>
+                        <i class="fas fa-user mr-2"></i>hey, {{ $fist_name }} !
+                        <i class="fas fa-angle-down fa-lg nav-link-arrow ml-2"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <!-- <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a> -->
+                        <a href="{{ route('auth.donators.logout') }}"
+                            class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4" onclick="event.preventDefault(); document.getElementById('account-logout-form').submit();">
+                            <span class="icon icon-sm icon-secondary">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <div class="ml-4">
+                                <span class="text-dark d-block">
+                                    Logout
+                                </span>
+                            </div>
+                        </a>
+                        <form id="account-logout-form" action="{{ route('auth.donators.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             </div>
             <!-- on small and xtrasmall -->
             <div class="d-lg-none d-md-none d-sm-block d-xs-block">
