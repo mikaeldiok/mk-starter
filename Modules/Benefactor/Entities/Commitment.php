@@ -17,7 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 
 
-class Donator extends UserModel implements HasMedia
+class Commitment extends BaseModel
 {
     use HasHashedMediaTrait;
     use HasRoles;
@@ -25,9 +25,9 @@ class Donator extends UserModel implements HasMedia
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = "donators";
+    protected $table = "commitments";
 
-    protected static $logName = 'donators';
+    protected static $logName = 'commitments';
     protected static $logOnlyDirty = true;
     protected static $logAttributes = ['name', 'id'];
     
@@ -76,17 +76,12 @@ class Donator extends UserModel implements HasMedia
 
     protected static function newFactory()
     {
-        return \Modules\Benefactor\Database\factories\DonatorFactory::new();
+        return \Modules\Benefactor\Database\factories\CommitmentFactory::new();
     }
 
-    public function donations(){
-        return $this->hasMany('Modules\Fund\Entities\Donation');
+    public function donator(){
+        return $this->belongsTo('Modules\Benefactor\Entities\Donator');
     }
-
-    public function commitments(){
-        return $this->hasMany('Modules\Benefactor\Entities\Commitment');
-    }
-
     /**
      * Create Converted copies of uploaded images.
      */

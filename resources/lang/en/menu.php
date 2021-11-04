@@ -21,6 +21,7 @@ return [
     'benefactor' => [
         'title'             => 'Benefactor',
         'donators'           => 'Donator',
+        'commitments'          => 'Commitment',
     ],
 
     'fund' => [
