@@ -21,11 +21,10 @@
                     </div>
                 </div>
                 <ul class="navbar-nav navbar-nav-hover justify-content-center">
-                    <li class="nav-item">
-                        <a href="{{ route('frontend.posts.index') }}" class="nav-link">
+                    <!-- <li class="nav-item">
                             <span class="fas fa-file-alt mr-1"></span> Posts
                         </a>
-                    </li>
+                    </li> -->
                     @if(!Auth::guard('web')->check())
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">

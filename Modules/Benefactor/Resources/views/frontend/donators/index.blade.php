@@ -37,47 +37,51 @@
                                 <a class="nav-link active" id="donasi-tab" data-toggle="tab" href="#donasi" role="tab" aria-controls="donasi" aria-selected="true">Riwayat</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Detail</a>
+                                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Komitmen</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-4" id="myTabContent">
                             <div class="tab-pane fade show active" id="donasi" role="tabpanel" aria-labelledby="donasi-tab">
-                                <?php
-                                    //Total Donations
-                                    $total = 0;
-                                    foreach($$module_name_singular->donations as $donation){
-                                        $total += $donation->amount;
-                                    }
-                                ?>        
-                                <tr>
-                                    <td>
-                                        <strong>Total Donasi</strong>  
-                                    </td>
-                                    <td> 
-                                        <h4>Rp. {{number_format($total, 2, ',', '.')}}</h4>                         
-                                    </td>
-                                </tr>
+                                @if($$module_name_singular->donations->count() > 0)
+                                    <?php
+                                        //Total Donations
+                                        $total = 0;
+                                        foreach($$module_name_singular->donations as $donation){
+                                            $total += $donation->amount;
+                                        }
+                                    ?>        
+                                    <tr>
+                                        <td>
+                                            <strong>Total Donasi</strong>  
+                                        </td>
+                                        <td> 
+                                            <h4>Rp. {{number_format($total, 2, ',', '.')}}</h4>                         
+                                        </td>
+                                    </tr>
 
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Tanggal</th>
-                                            <th scope="col">Nominal</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($$module_name_singular->donations as $donation)
+                                    <table class="table table-hover">
+                                        <thead>
                                             <tr>
-                                                <td>
-                                                {{$donation->donation_date}}    
-                                                </td>
-                                                <td> 
-                                                    Rp. {{number_format($donation->amount, 2, ',', '.')}}                              
-                                                </td>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Nominal</th>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table> 
+                                        </thead>
+                                        <tbody>
+                                            @foreach($$module_name_singular->donations as $donation)
+                                                <tr>
+                                                    <td>
+                                                    {{$donation->donation_date}}    
+                                                    </td>
+                                                    <td> 
+                                                        Rp. {{number_format($donation->amount, 2, ',', '.')}}                              
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table> 
+                                @else
+                                    <h1>Yuk Mulai Berdonasi!</h1>
+                                @endif
                             </div>
                             <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                                 @include("benefactor::frontend.commitments.index")
@@ -88,6 +92,10 @@
             </div>
         </div>
     </div>
+
+
+    @include('benefactor::frontend.commitments.edit-modal')
+
 </section>
 
 @endsection

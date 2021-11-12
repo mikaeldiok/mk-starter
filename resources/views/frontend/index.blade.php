@@ -17,7 +17,6 @@
             </div>
         </div>
     </div>
-    <div class="pattern bottom"></div>
 </section>
 
 <section class="section section-ld">

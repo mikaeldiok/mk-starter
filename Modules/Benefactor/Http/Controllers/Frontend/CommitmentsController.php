@@ -64,15 +64,9 @@ class CommitmentsController extends Controller
         $connection = config('database.default');
         $driver = config("database.connections.{$connection}.driver");
 
-        $activities = Activity::where('subject_type', '=', $module_model)
-            ->where('log_name', '=', $module_name)
-            ->where('subject_id', '=', Auth::user()->id)
-            ->latest()
-            ->paginate();
-
         return view(
             "benefactor::frontend.$module_name.index",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'activities','driver')
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'driver')
         );
     }
 
@@ -99,6 +93,33 @@ class CommitmentsController extends Controller
 
         $$module_name_singular = $commitments;
 
-        return redirect("/");
+        return redirect("donators/home");
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function update(CommitmentsRequest $request, $id)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'Store';
+        
+        $commitments = $this->commitmentService->update($request, $id);
+
+        $$module_name_singular =$commitments;
+
+        $donator =  $commitments->data->donator;
+
+        return redirect("donators/home");
     }
 }

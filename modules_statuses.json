@@ -1,7 +1,7 @@
 {
-    "Article": true,
-    "Tag": true,
-    "Comment": true,
+    "Article": false,
+    "Tag": false,
+    "Comment": false,
     "Core": false,
     "Benefactor": true,
     "Fund": true

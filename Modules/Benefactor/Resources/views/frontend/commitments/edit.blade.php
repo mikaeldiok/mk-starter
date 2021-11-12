@@ -1,9 +1,9 @@
 <div class="col">
     <?php
     $module_name = 'commitments';
-    $module_action = 'Create';
+    $module_action = 'Edit';
     ?>
-    {{ html()->form('POST', route("frontend.$module_name.store"))->id("reg")->class('form')->open() }}
+    {{ html()->modelForm($$module_name_singular, 'PATCH', route("frontend.$module_name.update", $$module_name_singular->commitments->first()->id))->class('form')->open() }}
 
     @include('benefactor::frontend.commitments.form',['module_name' => 'commitments'])
 

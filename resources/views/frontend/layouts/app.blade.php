@@ -40,7 +40,6 @@
     </main>
 
     @include('frontend.includes.footer')
-
 </body>
 
 <!-- Scripts -->
