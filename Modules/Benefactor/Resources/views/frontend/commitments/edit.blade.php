@@ -2,8 +2,13 @@
     <?php
     $module_name = 'commitments';
     $module_action = 'Edit';
+    if($$module_name_singular->commitments->first()){
+        $id = $$module_name_singular->commitments->first()->id;
+    }else{
+        $id = 0;
+    }
     ?>
-    {{ html()->modelForm($$module_name_singular, 'PATCH', route("frontend.$module_name.update", $$module_name_singular->commitments->first()->id))->class('form')->open() }}
+    {{ html()->modelForm($$module_name_singular, 'PATCH', route("frontend.$module_name.update", $id))->class('form')->open() }}
 
     @include('benefactor::frontend.commitments.form',['module_name' => 'commitments'])
 

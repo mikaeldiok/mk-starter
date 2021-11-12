@@ -1,14 +1,14 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="float-right">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCommitment">
-                    Edit
-                </button>
+    @if($donator->commitments->count() > 0)
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editCommitment">
+                        Edit
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-    @if($donator->commitments->count() > 0)
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
