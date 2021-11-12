@@ -5,7 +5,8 @@
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Benefactor\\Providers\\BenefactorServiceProvider"
+        "Modules\\Benefactor\\Providers\\BenefactorServiceProvider",
+        "Modules\\Benefactor\\Providers\\EventServiceProvider"
     ],
     "aliases": {},
     "files": [],

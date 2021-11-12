@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-
 use Modules\Benefactor\Imports\DonatorsImport;
+
+use Modules\Benefactor\Events\DonatorRegistered;
 
 class DonatorService{
 
@@ -110,6 +111,8 @@ class DonatorService{
         }
 
         DB::commit();
+
+        event(new DonatorRegistered($donator));
 
         Log::info(label_case($this->module_title.' '.__function__)." | '".$donator->name.'(ID:'.$donator->id.") ' by User:".$this->username.'(ID:'.$this->userid.')');
 

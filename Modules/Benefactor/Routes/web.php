@@ -54,7 +54,6 @@ Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Frontend', 'a
     $controller_name = 'DonatorsController';        
     Route::get("$module_name/home", ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
 
-
     /*
      *
      *  Commitments Routes
