@@ -21,15 +21,6 @@
                     </div>
                 </div>
                 <ul class="navbar-nav navbar-nav-hover justify-content-center">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">
-                            <span class="fas fa-home mr-2"></span> Home
-                        </a>
-                    </li>
-                    <!-- <li class="nav-item">
-                            <span class="fas fa-file-alt mr-1"></span> Posts
-                        </a>
-                    </li> -->
                     @if(!Auth::guard('web')->check())
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
@@ -168,10 +159,6 @@
                 @can('view_backend')
                 <a href="{{ route('backend.dashboard') }}" class="btn btn-white animate-up-2 mr-3"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
                 @endcan
-
-                <a href="#" class="btn btn-outline-white animate-up-2 mr-3"><i class="fas fa-th-large mr-2"></i> Support</a>
-
-                <a href="#" target="_blank" class="btn btn-secondary animate-up-2"><i class="fas fa-paper-plane mr-2"></i> Contact</a>
             </div>
             <!-- on small and xtrasmall -->
             <div class="d-lg-none d-md-none d-sm-block d-xs-block">
