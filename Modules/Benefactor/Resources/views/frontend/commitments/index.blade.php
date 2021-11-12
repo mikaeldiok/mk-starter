@@ -33,12 +33,15 @@
             </table>
         </div>
     @else
+    <div class="mb-3">
         <p class="lead">
             Kami akan membantu ada supaya dapat tetap berkomitmen dalam mendukung Gerakan Peduli Pendidikan YPW!
         </p>
-        <small>
+        <small class="mb-10">
             Isikan nominal dan berapa bulan sekali anda ingin berdonasi
         </small>
+        <br>
+    </div>
         @include("benefactor::frontend.commitments.create")
     @endif
 </div>
