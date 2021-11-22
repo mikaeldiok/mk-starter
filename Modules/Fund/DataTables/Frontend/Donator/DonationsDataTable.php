@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Fund\DataTables\Frontend;
+namespace Modules\Fund\DataTables\Frontend\Donator;
 
 use Carbon\Carbon;
 use Illuminate\Support\HtmlString;
@@ -30,17 +30,13 @@ class DonationsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('donator.donator_bank_account',function($data){
-
-                return  $this->hideStringStatic($data->donator->donator_bank_account);
-            })
             ->editColumn('amount',function($data){
                 return 'Rp. '.number_format($data->amount ?? 0 , 0, ',', '.');
             })
-            ->editColumn('donation_date', function ($data) {
+            ->editColumn('created_at', function ($data) {
                 $module_name = $this->module_name;
 
-                $formated_date = Carbon::parse($data->donation_date)->format('d-M-Y');
+                $formated_date = Carbon::parse($data->created_at)->format('d-m-Y, H:i:s');
 
                 return $formated_date;
             });
@@ -58,7 +54,7 @@ class DonationsDataTable extends DataTable
         $data = $this->donationRepository->query()
                 ->select('donations.*')
                 ->with(['donator'])
-                ->limit(100);
+                ->where('donator_id', $user->id);
 
         return $this->applyScopes($data);
     }
@@ -70,12 +66,12 @@ class DonationsDataTable extends DataTable
      */
     public function html()
     {
-        $id = 0;
+        $created_at = 8;
         return $this->builder()
                 ->setTableId('donations-table')
                 ->columns($this->getColumns())
                 ->minifiedAjax()
-                ->dom(config('mk-datatables.mk-dom-frontend-donations'))
+                ->dom(config('mk-datatables.mk-dom-frontend-donators-home'))
                 ->buttons(
                     Button::make('export'),
                     Button::make('print'),
@@ -100,11 +96,8 @@ class DonationsDataTable extends DataTable
     {
         return [
             Column::make('id')->hidden(),
-            Column::make('donation_date')->title("Tanggal"),
             Column::make('amount'),
-            Column::make('donator.donator_name')->hidden()->title("Donatur"),
-            Column::make('donator.donator_bank_name')->hidden()->title("Bank"),
-            Column::make('donator.donator_bank_account')->title("Rekening"),
+            Column::make('donation_date'),
         ];
     }
 
@@ -116,25 +109,5 @@ class DonationsDataTable extends DataTable
     protected function filename()
     {
         return 'Donations_' . date('YmdHis');
-    }
-
-    protected function hideStringStatic($string, $start_mod = 1, $length_mod = 1){
-        $length = strlen($string) - floor(strlen($string) / 2) - $length_mod;
-        $start = floor($length / 2) + $start_mod;
-        $replacement = str_repeat('*', $length);
-        return substr_replace($string, $replacement, $start, $length);
-    }
-
-
-    /**
-     * Dynamically hide string according to length.
-     *
-     * @return string
-     */
-    protected function hideStringDynamic($string){
-        $length = strlen($string) - floor(strlen($string) / 2);
-        $start = floor($length / 2);
-        $replacement = str_repeat('*', $length);
-        return substr_replace($string, $replacement, $start, $length);
     }
 }

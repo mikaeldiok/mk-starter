@@ -1,6 +1,6 @@
 @extends('benefactor::frontend.layouts.app')
 
-@section('title') {{ __("Posts") }} @endsection
+@section('title') {{ __("Donatur") }} @endsection
 
 @section('content')
 
@@ -59,26 +59,7 @@
                                         </td>
                                     </tr>
 
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Tanggal</th>
-                                                <th scope="col">Nominal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($$module_name_singular->donations as $donation)
-                                                <tr>
-                                                    <td>
-                                                    {{$donation->donation_date}}    
-                                                    </td>
-                                                    <td> 
-                                                        Rp. {{number_format($donation->amount, 2, ',', '.')}}                              
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table> 
+                                    {{ $dataTable->table() }}
                                 @else
                                     <h1>Yuk Mulai Berdonasi!</h1>
                                 @endif
@@ -99,3 +80,19 @@
 </section>
 
 @endsection
+
+@push ('after-styles')
+<!-- DataTables Fund and Extensions -->
+<link rel="stylesheet" href="{{ asset('vendor/datatable/datatables.min.css') }}">
+
+@endpush
+
+@push ('after-scripts')
+
+<script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
+        
+<script src="/vendor/datatables/buttons.server-side.js"></script>
+
+<!-- DataTables Fund and Extensions -->
+{!! $dataTable->scripts()  !!}
+@endpush

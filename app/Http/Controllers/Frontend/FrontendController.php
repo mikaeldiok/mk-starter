@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Modules\Fund\DataTables\Frontend\DonationsDataTable;
+use Modules\Fund\DataTables\Frontend\Home\DonationsDataTable;
 
 class FrontendController extends Controller
 {
