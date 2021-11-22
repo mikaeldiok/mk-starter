@@ -45,7 +45,7 @@
 <!-- Scripts -->
 @stack('before-scripts')
 
-<script src="{{ mix('js/frontend.js') }}"></script>
+<script src="{{ mix('js/frontend.js') }}"></script>        
 
 @stack('after-scripts')
 
