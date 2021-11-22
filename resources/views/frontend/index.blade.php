@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 text-center">
-                <h1 class="display-1 mb-4">{{app_name()}}</h1>
+                <h1 class="display-1 mb-4">Halo kawan Gependik!</h1>
                 <p class="lead text-muted">
-                    {!! setting('meta_description') !!}
+                    Selamat datang di sistem Gerakan Peduli Pendidikan Yayasan Pendidikan Warga Surakarta
                 </p>
 
                 @include('frontend.includes.messages')
