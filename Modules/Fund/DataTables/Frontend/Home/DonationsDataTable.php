@@ -32,10 +32,10 @@ class DonationsDataTable extends DataTable
             ->eloquent($query)
             ->editColumn('donator.donator_bank_account',function($data){
 
-                return  $this->hideStringStatic($data->donator->donator_bank_account);
+                return  "<strong>".$this->hideStringStatic($data->donator->donator_bank_account)."</strong><br>".$data->donator->donator_bank_name;
             })
             ->editColumn('amount',function($data){
-                return 'Rp. '.number_format($data->amount ?? 0 , 0, ',', '.');
+                return ' Rp. '.number_format($data->amount ?? 0 , 0, ',', '.');
             })
             ->editColumn('donation_date', function ($data) {
                 $module_name = $this->module_name;
@@ -43,7 +43,8 @@ class DonationsDataTable extends DataTable
                 $formated_date = Carbon::parse($data->donation_date)->format('d-M-Y');
 
                 return $formated_date;
-            });
+            })
+            ->rawColumns(['donator.donator_bank_account']);
     }
 
     /**
