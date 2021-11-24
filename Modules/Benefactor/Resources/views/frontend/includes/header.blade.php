@@ -46,13 +46,13 @@
                 <a href="{{ route('backend.dashboard') }}" class="btn btn-white animate-up-2 mr-3"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a>
                 @endcan
 
-                <div class="dropdown">
+                <div class="dropdown d-inline">
                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php
                             $name = explode(" ", \Auth::user()->donator_name);
                             $fist_name = $name[0];
                         ?>
-                        <i class="fas fa-user mr-2"></i>hey, {{ $fist_name }} !
+                        <i class="fas fa-user-tie mr-2"></i>hey, {{ $fist_name }} !
                         <i class="fas fa-angle-down fa-lg nav-link-arrow ml-2"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -73,6 +73,11 @@
                             @csrf
                         </form>
                     </div>
+                </div>
+                <div class=" d-inline">
+                    <form id="account-logout-form" action="{{ route('auth.donators.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
             <!-- on small and xtrasmall -->

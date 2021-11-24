@@ -6,7 +6,7 @@
 
 <div class="main-content">
 
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-gradient-warning py-7 py-lg-8 pt-lg-9">
         <div class="container">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
@@ -100,7 +100,8 @@
                 <div class="row mt-3">
                     <div class="col-6">
                         <a href="{{ route('password.request') }}" class="text-gray">
-                            <small>{{ __('Forgot Your Password?') }}</small>
+                            <!-- <small>{{ __('Forgot Your Password?') }}</small> -->
+                            <small>Silakan hubungi kami jika anda kehilangan password</small>
                         </a>
                     </div>
                     @if (Route::has('register'))

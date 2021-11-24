@@ -29,7 +29,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
                                 <span class="nav-link-inner-text mr-1">
-                                    <span class="fas fa-user mr-1"></span>
+                                    <span class="fas fa-user-tie mr-1"></span>
                                     Donatur
                                 </span>
                                 <i class="fas fa-angle-down nav-link-arrow"></i>

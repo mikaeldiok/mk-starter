@@ -12,7 +12,7 @@
                 <p class="lead text-muted">
                     Selamat datang di sistem Gerakan Peduli Pendidikan Yayasan Pendidikan Warga Surakarta
                 </p>
-
+                <a href="{{ route('frontend.donators.index') }}" class="btn btn-danger btn-lg m-2 rounded-pill pr-4" title="cek_status"><i class="fas fa-user-tie mx-2"></i>Area Donatur</a>
                 @include('frontend.includes.messages')
             </div>
         </div>
