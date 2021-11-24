@@ -42,7 +42,7 @@ Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Auth', 'as' =
 *
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'web', 'prefix' => ''], function () {
+Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Frontend', 'as' => 'frontend.', 'middleware' => 'auth:donator', 'prefix' => ''], function () {
 
     /*
      *

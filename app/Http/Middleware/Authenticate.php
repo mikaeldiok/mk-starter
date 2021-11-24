@@ -16,6 +16,9 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
+            if(\Route::is('frontend.donators.*')){
+                return route('auth.donators.login');
+            }
             return route('login');
         }
     }

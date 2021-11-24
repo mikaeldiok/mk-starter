@@ -58,6 +58,10 @@ class DonatorsController extends Controller
 
         $module_action = 'Index';
 
+        if(!Auth::guard('donator')->check()){
+            return view('benefactor::auth.login');
+        }
+
         $donators = $this->donatorService->show(Auth::user()->id);
 
         $$module_name_singular = $donators->data;
