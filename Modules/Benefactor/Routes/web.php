@@ -32,7 +32,7 @@ Route::group(['namespace' => '\Modules\Benefactor\Http\Controllers\Auth', 'as' =
     Route::post("$module_name/login", ['as' => "$module_name.login", 'uses' => "$controller_name@login"]);
     Route::get("$module_name/register", ['as' => "$module_name.register", 'uses' => "$controller_name@showRegisterForm"]);
     Route::post("$module_name/register", ['as' => "$module_name.register", 'uses' => "$controller_name@register"]);
-    Route::post("$module_name/logout", ['as' => "$module_name.logout", 'uses' => "$controller_name@logout"]);
+    Route::get("$module_name/logout", ['as' => "$module_name.logout", 'uses' => "$controller_name@logout"]);
     
 });
 

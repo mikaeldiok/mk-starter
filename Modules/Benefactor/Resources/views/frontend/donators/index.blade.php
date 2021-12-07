@@ -37,7 +37,7 @@
                                 <a class="nav-link active" id="donasi-tab" data-toggle="tab" href="#donasi" role="tab" aria-controls="donasi" aria-selected="true">Riwayat</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Komitmen</a>
+                                <a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Donasi</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-4" id="myTabContent">
