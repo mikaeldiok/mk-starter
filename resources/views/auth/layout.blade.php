@@ -2,19 +2,14 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon.png')}}">
-    <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>@yield('title') | {{ config('app.name') }}</title>
+    <title>PEDULI &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{{ setting('meta_description') }}">
-    <meta name="keyword" content="{{ setting('meta_keyword') }}">
-
+    <script src="https://kit.fontawesome.com/45014aae1e.js" crossorigin="anonymous"></script>
+    
     @include('frontend.includes.meta')
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <link rel="icon" type="image/ico" href="{{asset('img/favicon.png')}}" />
 
     <!-- CSRF Token -->
@@ -22,75 +17,60 @@
 
     @stack('before-styles')
 
-    <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,500|Dosis:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/aos.css">
+    <link rel="stylesheet" href="../css/ionicons.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../css/jquery.timepicker.css">
+    <link rel="stylesheet" href="../css/flaticon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/fancybox.min.css">
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     @stack('after-styles')
 
-    <x-google-analytics config="{{ setting('google_analytics') }}" />
+    <x-google-analytics />
 </head>
 
 <body class="bg-white">
-
-    <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{asset('img/logo-with-text-dark.png')}}" height="30">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
-                <div class="navbar-collapse-header">
-                    <div class="row">
-                        <div class="col-6 collapse-brand">
-                            <a href="/">
-                                <img src="{{asset('img/logo-with-text-dark.png')}}" height="40">
-                            </a>
-                        </div>
-                        <div class="col-6 collapse-close">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                @guest
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link">
-                            <span class="nav-link-inner--text">Login Admin</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('auth.donators.login') }}" class="nav-link">
-                            <span class="nav-link-inner--text">Login Donatur</span>
-                        </a>
-                    </li>
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a href="{{ route('register') }}" class="nav-link">
-                            <span class="nav-link-inner--text">Register</span>
-                        </a>
-                    </li>
-                    @endif
-                </ul>
-                @endguest
-
-                <hr class="d-lg-none" />
-            </div>
-        </div>
-    </nav>
-
+    
+    @include('auth.header')
+    
     @yield('content')
 
     @include('auth.footer')
 
     @stack('before-scripts')
 
-    <script src="{{ mix('js/dashboard.js') }}"></script>
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.easing.1.3.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+
+    <script src="../js/jquery.fancybox.min.js"></script>
+
+    <script src="../js/aos.js"></script>
+    <script src="../js/jquery.animateNumber.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="../js/google-map.js"></script>
+    <script src="../js/main.js"></script>
+    
     @stack('after-scripts')
 
 </body>
