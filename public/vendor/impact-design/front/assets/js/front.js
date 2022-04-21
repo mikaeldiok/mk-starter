@@ -68,15 +68,15 @@ $(document).ready(function () {
         $(this).parent('.dropdown-submenu').toggleClass('show');
     });
 
-    $('.dropdown').hover(function() {
-        $(this).addClass('show');
-        $(this).find('.dropdown-menu').addClass('show');
-        $(this).find('.dropdown-toggle').attr('aria-expanded', 'true');
-    }, function () {
-        $(this).removeClass('show');
-        $(this).find('.dropdown-menu').removeClass('show');
-        $(this).find('.dropdown-toggle').attr('aria-expanded', 'false');
-    });
+    // $('.dropdown').hover(function() {
+    //     $(this).addClass('show');
+    //     $(this).find('.dropdown-menu').addClass('show');
+    //     $(this).find('.dropdown-toggle').attr('aria-expanded', 'true');
+    // }, function () {
+    //     $(this).removeClass('show');
+    //     $(this).find('.dropdown-menu').removeClass('show');
+    //     $(this).find('.dropdown-toggle').attr('aria-expanded', 'false');
+    // });
 
     $('.dropdown').click(function() {
         if ($(this).hasClass('show')) {
