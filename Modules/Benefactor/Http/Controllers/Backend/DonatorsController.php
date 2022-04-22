@@ -239,6 +239,13 @@ class DonatorsController extends Controller
 
         $module_action = 'Update';
 
+        $this->validate($request, [
+            'avatar'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'first_name'=> 'required|min:3|max:191',
+            'last_name' => 'required|min:3|max:191',
+            'email'     => 'email',
+        ]);
+        
         $donators = $this->donatorService->update($request,$id);
 
         $$module_name_singular = $donators->data;

@@ -17,4 +17,8 @@ class DonatorRepository extends BaseRepository implements DonatorRepositoryInter
     public function getDonatorsByDonatorQuery($query, $donator_id){
         return $query->where('id', $donator_id)->withTrashed();
     }
+
+    public function getDonatorsWithUser(){
+        return Donator::with('user')->get();
+    }
 }

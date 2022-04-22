@@ -79,12 +79,13 @@ class CommitmentsDataTable extends DataTable
      */
     public function html()
     {
-        $created_at = 8;
+        $created_at = 6;
         return $this->builder()
                 ->setTableId('commitments-table')
                 ->columns($this->getColumns())
                 ->minifiedAjax()
                 ->dom(config('mk-datatables.mk-dom'))
+                ->orderBy($created_at,'desc')
                 ->buttons(
                     Button::make('export'),
                     Button::make('print'),

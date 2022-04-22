@@ -56,7 +56,7 @@ class DonatorsController extends Controller
 
         $module_action = 'Index';
 
-        $donators = $this->donatorService->show(Auth::user()->id);
+        $donators = $this->donatorService->show(Auth::user()->donator->id);
 
         $$module_name_singular = $donators->data;
 

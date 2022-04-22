@@ -133,7 +133,6 @@ class CommitmentService{
 
         $commitment = $this->commitmentRepository->findOrFail($id);
 
-        $commitment->installment_ids = json_decode($commitment->installment_ids, true);
 
         Log::info(label_case($this->module_title.' '.__function__)." | '".$commitment->name.'(ID:'.$commitment->id.") ' by User:".$this->username.'(ID:'.$this->userid.')');
 
@@ -289,7 +288,7 @@ class CommitmentService{
 
     public function prepareOptions(){
         
-        $donators = $this->donatorRepository->pluck("donator_name","id");
+        $donators = $this->donatorRepository->getDonatorsWithUser()->pluck('user.name','id');
 
         $options = array(
             'donators' => $donators,

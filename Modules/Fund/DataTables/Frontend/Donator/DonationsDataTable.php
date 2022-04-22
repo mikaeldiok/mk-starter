@@ -33,6 +33,13 @@ class DonationsDataTable extends DataTable
             ->editColumn('amount',function($data){
                 return 'Rp. '.number_format($data->amount ?? 0 , 0, ',', '.');
             })
+            ->editColumn('donation_date', function ($data) {
+                $module_name = $this->module_name;
+
+                $formated_date = Carbon::parse($data->created_at)->format('d-m-Y');
+
+                return $formated_date;
+            })
             ->editColumn('created_at', function ($data) {
                 $module_name = $this->module_name;
 
@@ -54,7 +61,7 @@ class DonationsDataTable extends DataTable
         $data = $this->donationRepository->query()
                 ->select('donations.*')
                 ->with(['donator'])
-                ->where('donator_id', $user->id);
+                ->where('donator_id', $user->donator->id);
 
         return $this->applyScopes($data);
     }
@@ -66,12 +73,13 @@ class DonationsDataTable extends DataTable
      */
     public function html()
     {
-        $created_at = 8;
+        $created_at = 3;
         return $this->builder()
                 ->setTableId('donations-table')
                 ->columns($this->getColumns())
                 ->minifiedAjax()
                 ->dom(config('mk-datatables.mk-dom-frontend-donators-home'))
+                ->orderBy($created_at,'desc')
                 ->buttons(
                     Button::make('export'),
                     Button::make('print'),
@@ -98,6 +106,7 @@ class DonationsDataTable extends DataTable
             Column::make('id')->hidden(),
             Column::make('amount'),
             Column::make('donation_date'),
+            Column::make('created_at')->title('Confirmed at'),
         ];
     }
 

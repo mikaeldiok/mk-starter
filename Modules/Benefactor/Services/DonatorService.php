@@ -24,7 +24,10 @@ use Modules\Benefactor\Imports\DonatorsImport;
 use Modules\Benefactor\Events\DonatorRegistered;
 
 use App\Events\Backend\UserCreated;
+use App\Events\Backend\UserUpdated;
+
 use App\Models\User;
+use App\Models\Userprofile;
 
 class DonatorService{
 
@@ -145,7 +148,10 @@ class DonatorService{
 
         $donator = $this->donatorRepository->findOrFail($id);
 
-        $donator->installment_ids = json_decode($donator->installment_ids, true);
+        $donator->first_name = $donator->user->first_name;
+        $donator->last_name = $donator->user->last_name;
+        $donator->mobile = $donator->user->mobile;
+        $donator->address = $donator->user->address;
 
         Log::info(label_case($this->module_title.' '.__function__)." | '".$donator->name.'(ID:'.$donator->id.") ' by User:".$this->username.'(ID:'.$this->userid.')');
 
@@ -168,6 +174,8 @@ class DonatorService{
             $updated = $this->donatorRepository->update($donator->toArray(),$id);
 
             $updated_donator = $this->donatorRepository->findOrFail($id);
+
+            $update_user = $this->updateNormalUser($request, $updated_donator->user->id);
             
         }catch (Exception $e){
             DB::rollBack();
@@ -382,6 +390,50 @@ class DonatorService{
 
         DB::commit();
     
+        return $user;
+    }
+
+    public function updateNormalUser(Request $request, $id){
+       
+        $module_title = 'Users';
+        $module_action = 'updateNormalUser';
+        $module_name = 'users';
+        $module_name_singular = Str::singular($module_name);
+
+        $user = User::findOrFail($id);
+        
+        $request['name'] = $request->first_name.' '.$request->last_name;
+        $user->update($request->except(['roles', 'permissions']));
+
+        if ($id == 1) {
+            $user->syncRoles(['super admin']);
+
+            return redirect("admin/$module_name")->with('flash_success', 'Update successful!');
+        }
+
+        $roles = $request['roles'];
+        $permissions = $request['permissions'];
+
+        // Sync Roles
+        if (isset($roles)) {
+            $user->syncRoles($roles);
+        } else {
+            $roles = [];
+            $user->syncRoles($roles);
+        }
+
+        // Sync Permissions
+        if (isset($permissions)) {
+            $user->syncPermissions($permissions);
+        } else {
+            $permissions = [];
+            $user->syncPermissions($permissions);
+        }
+
+        event(new UserUpdated($user));
+
+        Log::info(label_case($module_title.' '.$module_action)." | '".$user->name.'(ID:'.$user->id.") ' by User:".auth()->user()->name.'(ID:'.auth()->user()->id.')');
+
         return $user;
     }
 }

@@ -2,10 +2,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">PEDULI</a>
+    <a class="nav-button ml-auto d-md-block d-lg-none" href="{{ route('frontend.donators.index') }}"><i class="fa-solid fa-2x fa-home"></i></a></li>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="oi oi-menu"></span> Menu
     </button>
-
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         @if(Auth::check())
@@ -18,6 +18,7 @@
               @if(!Auth::user()->hasRole("user"))
                 <li class="nav-item active"><a class="nav-link" href="{{ route('backend.dashboard') }}"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
               @endif
+              <li class="nav-item"><a class="nav-link" href="{{ route('frontend.donators.index') }}"><i class="fa-solid fa-home"></i> Dashboard</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ route('frontend.users.profile', auth()->user()->id) }}"><i class="fa-solid fa-user"></i> Profile</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>

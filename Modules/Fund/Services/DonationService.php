@@ -133,7 +133,6 @@ class DonationService{
 
         $donation = $this->donationRepository->findOrFail($id);
 
-        $donation->installment_ids = json_decode($donation->installment_ids, true);
 
         Log::info(label_case($this->module_title.' '.__function__)." | '".$donation->name.'(ID:'.$donation->id.") ' by User:".$this->username.'(ID:'.$this->userid.')');
 
@@ -289,7 +288,7 @@ class DonationService{
 
     public function prepareOptions(){
         
-        $donators = $this->donatorRepository->pluck("donator_name","id");
+        $donators = $this->donatorRepository->getDonatorsWithUser()->pluck('user.name','id');
 
         $options = array(
             'donators' => $donators,

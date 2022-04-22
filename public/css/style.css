@@ -2126,3 +2126,10 @@ html:not([dir="rtl"]) .c-avatar-status {
         border: 2px solid transparent;
         background: #001c99;
         color: #000; }
+
+.off-navbar-mobile {
+  border: none;
+  cursor: pointer;
+  padding-right: 0;
+  font-size: 16px;
+  letter-spacing: .1em; }
