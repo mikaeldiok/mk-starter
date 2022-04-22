@@ -6,7 +6,7 @@ use App\Events\Frontend\UserRegistered;
 use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserRegisteredProfileCreate implements ShouldQueue
+class UserRegisteredProfileCreate
 {
     /**
      * Create the event listener.
@@ -44,9 +44,8 @@ class UserRegisteredProfileCreate implements ShouldQueue
         $userprofile->status = ($user->status > 0) ? $user->status : 0;
         $userprofile->save();
 
-        \Log::debug('UserRegisteredProfileCreate:'.$user->name);
+        \Log::info('UserRegisteredProfileCreate:'.$user->name);
 
         // Clear Cache
-        \Artisan::call('cache:clear');
     }
 }

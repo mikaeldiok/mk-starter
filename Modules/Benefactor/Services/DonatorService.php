@@ -91,6 +91,7 @@ class DonatorService{
         DB::beginTransaction();
 
         try {
+
             $user = $this->createNormalUser($request);
             
             $donatorObject = $this->donatorRepository->make($data);
@@ -329,12 +330,6 @@ class DonatorService{
         DB::beginTransaction();
 
         try{
-            $request->validate([
-                'first_name'=> 'required|min:3|max:191',
-                'last_name' => 'required|min:3|max:191',
-                'email'     => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
-                'password'  => 'required|confirmed|min:4',
-            ]);
             if(!$request->is_register){
                 $request->confirmed = 1;
             }

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Flash;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -36,15 +37,25 @@ class AuthenticatedSessionController extends Controller
         $redirectTo = request()->redirectTo;
 
         if (Auth::check()) {
-            $role = Auth::user()->roles->pluck('name')->first(); 
-            \Log::debug(json_encode($role));
-            switch ($role) {
-              case 'user':
-                $redirectTo = '/donators/home';
-                break;
-              default:
+            if (env('EMAIL_MUST_VERIFY') == 'true'){
+                if(!Auth::user()->email_verified_at && !Auth::user()->can('view_backend')){
+                    
+                    Auth::logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+
+                    Flash::error("<i class='fas fa-times-circle'></i> Silakan konfirmasi email anda terlebih dahulu. Kami telah mengirimkan konfirmasi ke alamat email anda.")->important();
+                    
+                    return redirect('/login');
+                }
+            }
+
+            $canViewBackend = Auth::user()->can('view_backend'); 
+
+            if($canViewBackend){
                 $redirectTo = '/admin';
-                break;
+            }else{
+                $redirectTo = '/donators/home';
             }
         }
 

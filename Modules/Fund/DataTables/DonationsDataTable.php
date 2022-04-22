@@ -117,7 +117,7 @@ class DonationsDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('donator_id')->hidden(),
-            Column::make('donator.donator_name')->title("Nama"),
+            Column::make('donator.user.name')->title("Nama"),
             Column::make('donator.donator_bank_name')->title("Bank"),
             Column::make('donator.donator_bank_account')->title("Rekening"),
             Column::make('amount'),

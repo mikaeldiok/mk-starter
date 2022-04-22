@@ -21,7 +21,7 @@ $required = "required";
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             <br>
             @foreach($buttons as $button)
-                <button type="button" id={{$button}} value={{$button}} class="amount_btn btn btn-outline-primary btn-sm m-1">{{number_format($button, 0, ',', '.')}}</button>
+                <button type="button" id={{$button}} value={{$button}} class="amount_btn btn btn-outline-blue m-1">{{number_format($button, 0, ',', '.')}}</button>
             @endforeach
             <br>
             <small>Atau masukkan nominal:</small>
@@ -47,7 +47,7 @@ $required = "required";
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             <br>
             @foreach($buttons as $button)
-                <button type="button" id={{$button}} value={{$button}} class="month_btn btn btn-outline-primary btn-sm m-1">{{$button}} Bulan</button>
+                <button type="button" id={{$button}} value={{$button}} class="month_btn btn btn-outline-blue btn-sm m-1">{{$button}} Bulan</button>
             @endforeach
             <br>
             <small>Atau masukkan Jumlah Bulan:</small>

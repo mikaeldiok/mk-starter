@@ -50,12 +50,19 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name'=> 'required|min:3|max:191',
+            'last_name' => 'required|min:3|max:191',
+            'email'     => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
+            'password'  => 'required|confirmed|min:4',
+        ]);
+
         $request->is_register = 1;
         $donator = $this->donatorService->store($request);
         $user = $donator->user;
 
-        event(new Registered($user));
         event(new UserRegistered($user));
+        event(new Registered($user));
         Flash::success('<i class="fas fa-check"></i>  Selamat anda sudah terdaftar, Kami telah mengirimkan konfirmasi ke alamat email anda!')->important();
 
         return redirect('login');

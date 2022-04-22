@@ -2107,3 +2107,22 @@ html:not([dir="rtl"]) .c-avatar-status {
   border: 2px solid transparent;
   background: #8b187e;
   color: #000; }
+
+  .btn.btn-blue {
+    background: #001c99;
+    border: 2px solid #001c99;
+    color: #fff; }
+    .btn.btn-blue:hover {
+      border: 2px solid #001c99;
+      background: transparent;
+      color: #001c99; }
+    .btn.btn-blue:active, .btn.btn-blue:focus {
+      color: #fff !important; }
+    .btn-outline-blue {
+      border: 2px solid #001c99;
+      background: transparent;
+      color: #001c99; }
+      .btn-outline-blue:hover {
+        border: 2px solid transparent;
+        background: #001c99;
+        color: #000; }

@@ -31,7 +31,7 @@ class Donation extends Basemodel
     
     public function donator()
     {
-        return $this->belongsTo('Modules\Benefactor\Entities\Donator');
+        return $this->belongsTo('Modules\Benefactor\Entities\Donator')->with('user');
     }
 
 

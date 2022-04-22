@@ -32,7 +32,7 @@
         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
         <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
         @auth
-          @if(Auth::user()->hasRole("user"))
+          @if(Auth::user()->hasRole("user") ||  !Auth::user()->can('view_backend'))
             <li class="nav-item d-none d-lg-block"><a href="{{route('frontend.donators.index')}}" class="btn btn-sm btn-orange nav-button"><i class="fa-solid fa-home"></i> Area Donatur</a></li>
           @endif
           <li class="dropdown d-none d-lg-block nav-button">
@@ -45,7 +45,7 @@
               </a>
 
               <div class="dropdown-menu" aria-labelledby="dropdownProfile" style="left:auto;right:0;">
-                @if(!Auth::user()->hasRole("user"))
+                @if( Auth::user()->can('view_backend'))
                 <a class="dropdown-item" href="{{ route('backend.dashboard') }}"><i class="fa-solid fa-gauge"></i> Dashboard</a>
                 @endif
                 <a class="dropdown-item" href="{{ route('frontend.users.profile', auth()->user()->id) }}"><i class="fa-solid fa-user"></i> Profile</a>

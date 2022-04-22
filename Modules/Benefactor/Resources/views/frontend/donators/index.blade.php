@@ -8,22 +8,10 @@
     $name = explode(" ", \Auth::user()->donator_name);
     $fist_name = $name[0];
 ?>
-<section class="section-header bg-primary text-white pb-7 pb-lg-11">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-8 text-center">
-                <h1 class="display-2 mb-4">
-                    Halo, {{$fist_name}}!
-                    
-                </h1>
-                <p class="lead">
-                    Kamu bisa melihat riwayat donasimu ataupun melakukan pengaturan komitmen sumbanganmu disini
-                </p>
 
-            </div>
-        </div>
-    </div>
-</section>
+<div class="block-31" style="position: relative;">
+  <div class="background-1 header-bg"></div>
+</div>
 
 <section class="section section-lg line-bottom-light bg-light">
     <div class="container mt-n7 mt-lg-n12 z-2">

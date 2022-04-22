@@ -114,7 +114,7 @@ class CommitmentsDataTable extends DataTable
                   ->addClass('text-center'),
             Column::make('id')->hidden(),
             Column::make('donator_id')->hidden(),
-            Column::make('donator.donator_name')->title("Nama"),
+            Column::make('donator.user.name')->title("Nama"),
             Column::make('amount'),
             Column::make('periods'),
             Column::make('created_at'),

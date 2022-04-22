@@ -80,7 +80,7 @@ class Commitment extends BaseModel
     }
 
     public function donator(){
-        return $this->belongsTo('Modules\Benefactor\Entities\Donator');
+        return $this->belongsTo('Modules\Benefactor\Entities\Donator')->with('user');
     }
     /**
      * Create Converted copies of uploaded images.
