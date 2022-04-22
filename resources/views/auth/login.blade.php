@@ -4,16 +4,16 @@
 
 @section('content')
 
-<div class="main-content bg-mild-purple">
+<div class="main-content bg-sunset">
 
     <div class="header py-7 py-lg-8 pt-lg-9">
         <div class="container">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 px-5 py-3">
-                        <h1 class="text-white">Administrator</h1>
+                    <div class="col-xl-5 col-lg-6 col-md-8 px-5 py-5">
+                        <h1 class="text-white">@lang('Selamat Datang')</h1>
                         <p class="text-lead text-white">
-                            Silakan masuk dengan detail admin anda
+                            @lang("Silakan masuk dengan email dan password anda")
                         </p>
                     </div>
                 </div>
@@ -89,6 +89,9 @@
                                     @lang('Submit')
                                 </button>
                             </div>
+                            <div class="text-center text-muted m-4">
+                                <small>Belum Punya akun? </small><a href={{route('register')}}><u>DAFTAR DISINI</u></a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -98,13 +101,6 @@
                             <small>{{ __('Forgot Your Password?') }}</small>
                         </a>
                     </div>
-                    @if (Route::has('register'))
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-gray">
-                            <small>Create new account</small>
-                        </a>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>

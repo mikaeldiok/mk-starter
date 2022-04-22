@@ -30028,9 +30028,9 @@ button.section-gray-800:focus {
     cursor: pointer;
 }
 
-.dropdown-toggle:after, .dropright .dropdown-toggle:after, .dropleft .dropdown-toggle:before, .dropup .dropdown-toggle:after {
+/* .dropdown-toggle:after, .dropright .dropdown-toggle:after, .dropleft .dropdown-toggle:before, .dropup .dropdown-toggle:after {
     display: none;
-}
+} */
 
 .dropdown-menu-sm {
     min-width: 100px;

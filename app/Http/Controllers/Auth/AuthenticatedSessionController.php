@@ -35,6 +35,19 @@ class AuthenticatedSessionController extends Controller
 
         $redirectTo = request()->redirectTo;
 
+        if (Auth::check()) {
+            $role = Auth::user()->roles->pluck('name')->first(); 
+            \Log::debug(json_encode($role));
+            switch ($role) {
+              case 'user':
+                $redirectTo = '/donators/home';
+                break;
+              default:
+                $redirectTo = '/admin';
+                break;
+            }
+        }
+
         if ($redirectTo) {
             return redirect($redirectTo);
         } else {

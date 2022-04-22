@@ -19,8 +19,6 @@ class DonatorsController extends Controller
 
     public function __construct(DonatorService $donatorService)
     {
-        $this->middleware('auth:donator');
-
         // Page Title
         $this->module_title = trans('menu.benefactor.donators');
 
@@ -57,10 +55,6 @@ class DonatorsController extends Controller
         $module_name_singular = Str::singular($module_name);
 
         $module_action = 'Index';
-
-        if(!Auth::guard('donator')->check()){
-            return view('benefactor::auth.login');
-        }
 
         $donators = $this->donatorService->show(Auth::user()->id);
 

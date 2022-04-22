@@ -19,9 +19,12 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-use Modules\Benefactor\Imports\DonatorsImport;
 
+use Modules\Benefactor\Imports\DonatorsImport;
 use Modules\Benefactor\Events\DonatorRegistered;
+
+use App\Events\Backend\UserCreated;
+use App\Models\User;
 
 class DonatorService{
 
@@ -36,10 +39,10 @@ class DonatorService{
         $this->module_title = Str::plural(class_basename($this->donatorRepository->model()));
 
         if(Auth::check()){
-            $this->username = Axuth::user()->name;
-            $this->userid = Axuth::user()->id;
+            $this->username = Auth::user()->name;
+            $this->userid = Auth::user()->id;
         }else{
-            $this->username = "Guest";
+            $this->username = "Guest Registering";
             $this->userid = 0;
         }
     }
@@ -71,7 +74,7 @@ class DonatorService{
 
     public function create(){
 
-        Log::info(label_case($this->module_title.' '.__function__).' | User:'.$this->username.'(ID:'.$this->userid.')');
+       Log::info(label_case($this->module_title.' '.__function__).' | User:'.$this->username.'(ID:'.$this->userid.')');
         
         $createOptions = $this->prepareOptions();
 
@@ -88,21 +91,23 @@ class DonatorService{
         DB::beginTransaction();
 
         try {
+            $user = $this->createNormalUser($request);
+            
             $donatorObject = $this->donatorRepository->make($data);
 
             $bank = preg_split('/-/',$data['donator_bank_name']);
 
+            $donatorObject->user_id = $user->id;
             $donatorObject->donator_bank_code = $bank[0];
             $donatorObject->donator_bank_name = $bank[1];
 
             $donatorObjectArray = $donatorObject->toArray();
-            $donatorObjectArray['password'] = Hash::make($data['password']);
 
             $donator = $this->donatorRepository->create($donatorObjectArray);
 
         }catch (Exception $e){
             DB::rollBack();
-            Log::critical(label_case($this->module_title.' AT '.Carbon::now().' | Function:'.__FUNCTION__).' | Msg: '.$e->getMessage());
+            Log::critical(label_case($this->module_title.' AT '.Carbon::now().' | Function:'.__FUNCTION__).' | msg: '.$e->getMessage());
             return (object) array(
                 'error'=> true,
                 'message'=> $e->getMessage(),
@@ -120,6 +125,7 @@ class DonatorService{
             'error'=> false,            
             'message'=> '',
             'data'=> $donator,
+            'user'=> $user,
         );
     }
 
@@ -316,5 +322,71 @@ class DonatorService{
         );
 
         return $options;
+    }
+
+    public function createNormalUser($request){
+        
+        DB::beginTransaction();
+
+        try{
+            $request->validate([
+                'first_name'=> 'required|min:3|max:191',
+                'last_name' => 'required|min:3|max:191',
+                'email'     => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
+                'password'  => 'required|confirmed|min:4',
+            ]);
+            if(!$request->is_register){
+                $request->confirmed = 1;
+            }
+            $data_array = $request->except('_token', 'roles', 'permissions', 'password_confirmation');
+            $data_array['name'] = $request->first_name.' '.$request->last_name;
+            $data_array['password'] = Hash::make($request->password);
+    
+            if ($request->confirmed == 1) {
+                $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
+            } else {
+                $data_array = Arr::add($data_array, 'email_verified_at', null);
+            }
+    
+            $user = User::create($data_array);
+    
+            $roles = ["user"];
+            $permissions = $request['permissions'];
+    
+            // Sync Roles
+            if (isset($roles)) {
+                $user->syncRoles($roles);
+            } else {
+                $roles = [];
+                $user->syncRoles($roles);
+            }
+    
+            // Sync Permissions
+            if (isset($permissions)) {
+                $user->syncPermissions($permissions);
+            } else {
+                $permissions = [];
+                $user->syncPermissions($permissions);
+            }
+    
+            // Username
+            $id = $user->id;
+            $username = config('app.initial_username') + $id;
+            $user->username = $username;
+            $user->save();
+
+            if(!$request->is_register){
+                event(new UserCreated($user));
+            }
+
+        }catch (Exception $e){
+            DB::rollBack();
+            Log::critical(label_case($this->module_title.' AT '.Carbon::now().' | Function:'.__FUNCTION__).' | msg: '.$e->getMessage());
+            return null;
+        }
+
+        DB::commit();
+    
+        return $user;
     }
 }

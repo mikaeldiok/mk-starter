@@ -10,9 +10,17 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Modules\Benefactor\Services\DonatorService;
 
 class RegisteredUserController extends Controller
 {
+    protected $donatorService;
+
+    public function __construct(DonatorService $donatorService)
+    {
+        $this->donatorService = $donatorService;
+    }
+    
     /**
      * Display the registration view.
      *
@@ -20,7 +28,15 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+
+        $options = $this->donatorService->create();
+
+        $options_data = $options->data;
+
+        $banks = $options_data['banks'];
+        $donator_types = $options_data['donator_types'];
+
+        return view('auth.register', compact('banks','donator_types'));
     }
 
     /**
@@ -34,31 +50,14 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'first_name' => 'required|string|max:191',
-            'last_name'  => 'required|string|max:191',
-            'email'      => 'required|string|email|max:191|unique:users',
-            'password'   => 'required|string|confirmed|min:8',
-        ]);
-
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name'  => $request->last_name,
-            'name'       => $request->first_name.' '.$request->last_name,
-            'email'      => $request->email,
-            'password'   => Hash::make($request->password),
-        ]);
-
-        // username
-        $username = config('app.initial_username') + $user->id;
-        $user->username = $username;
-        $user->save();
-
-        Auth::login($user);
+        $request->is_register = 1;
+        $donator = $this->donatorService->store($request);
+        $user = $donator->user;
 
         event(new Registered($user));
         event(new UserRegistered($user));
+        Flash::success('<i class="fas fa-check"></i>  Selamat anda sudah terdaftar, Kami telah mengirimkan konfirmasi ke alamat email anda!')->important();
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('login');
     }
 }

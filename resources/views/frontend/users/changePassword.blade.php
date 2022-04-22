@@ -4,6 +4,10 @@
 
 @section('content')
 
+<div class="block-31" style="position: relative;">
+  <div class="background-1 header-bg"></div>
+</div>
+
 <section class="section-header bg-primary text-white pb-7 pb-lg-11">
     <div class="container">
         <div class="row justify-content-center">
@@ -72,7 +76,7 @@
                                                 <div class="form-group">
                                                     {{ html()->button($text = "<i class='fas fa-save'></i>&nbsp;Save", $type = 'submit')->class('btn btn-success') }}
 
-                                                    <a href="{{ route("frontend.$module_name.profile", auth()->user()->username) }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
+                                                    <a href="{{ route("frontend.$module_name.profile", auth()->user()->id) }}" class="btn btn-warning" data-toggle="tooltip" title="{{__('labels.backend.cancel')}}"><i class="fas fa-reply"></i>&nbsp;Back</a>
                                                 </div>
                                             </div>
                                         </div>

@@ -65,7 +65,7 @@ class DonatorsDataTable extends DataTable
     public function query()
     {
         $user = auth()->user();
-        $data = $this->donatorRepository->query();
+        $data = $this->donatorRepository->query()->with('user');
 
         return $this->applyScopes($data);
     }
@@ -83,6 +83,7 @@ class DonatorsDataTable extends DataTable
                 ->columns($this->getColumns())
                 ->minifiedAjax()
                 ->dom(config('mk-datatables.mk-dom'))
+                ->orderBy($created_at,'desc')
                 ->buttons(
                     Button::make('export'),
                     Button::make('print'),
@@ -110,9 +111,9 @@ class DonatorsDataTable extends DataTable
                   ->exportable(false)
                   ->printable(false)
                   ->addClass('text-center'),
-            Column::make('donator_name'),
-            Column::make('donator_email'),
-            Column::make('donator_phone'),
+            Column::make('user.name')->data('user.name')->name('user.name')->title('Name'),
+            Column::make('user.email')->data('user.email')->name('user.email')->title('Enail'),
+            Column::make('user.mobile')->data('user.mobile')->name('user.mobile')->title('Mobile Phone'),
             Column::make('donator_type')->hidden(),
             Column::make('donator_bank_code')->hidden(),
             Column::make('donator_bank_name'),

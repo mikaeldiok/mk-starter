@@ -15,7 +15,7 @@ class UserEventSubscriber
         if(\Auth::guard('donator')->check()){
             $user = $event->user;
 
-            Log::debug('Login Success: '.$user->donator_name.', IP:'.request()->getClientIp());
+            Log::debug('Login Success: '.$user->user->name.', IP:'.request()->getClientIp());
         }else{
             try {
                 $user = $event->user;

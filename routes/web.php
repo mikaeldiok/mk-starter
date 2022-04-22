@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
 * These routes need view-backend permission
 * --------------------------------------------------------------------
 */
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'admin_hider', 'can:view_backend']], function () {
 
     /**
      * Backend Dashboard

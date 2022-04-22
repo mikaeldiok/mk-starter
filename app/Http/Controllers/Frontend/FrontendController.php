@@ -4,16 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Modules\Fund\DataTables\Frontend\Home\DonationsDataTable;
-use Modules\Benefactor\Services\DonatorService;
 
 class FrontendController extends Controller
 {
-    protected $donatorService;
-
-    public function __construct(DonatorService $donatorService)
-    {
-        $this->donatorService = $donatorService;
-    }
     /**
      * Show the application dashboard.
      *
@@ -27,15 +20,8 @@ class FrontendController extends Controller
 
         $donations = $donation_model::paginate();
 
-        $options = $this->donatorService->create();
-
-        $options_data = $options->data;
-
-        $banks = $options_data['banks'];
-        $donator_types = $options_data['donator_types'];
-
         return $dataTable->render("frontend.index",
-            compact('body_class','donator_types','banks')
+            compact('body_class')
         );
 
     }

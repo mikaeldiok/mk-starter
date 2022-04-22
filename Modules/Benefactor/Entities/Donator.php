@@ -83,6 +83,15 @@ class Donator extends UserModel implements HasMedia
         return $this->hasMany('Modules\Fund\Entities\Donation');
     }
 
+    public function user(){
+        return $this->belongsTo('App\Models\User')
+                    ->withDefault([
+                        'name' => 'no-user',
+                        'email' => 'no-email',
+                        'mobile' => 'no-mobile',
+                    ]);
+    }
+
     public function commitments(){
         return $this->hasMany('Modules\Benefactor\Entities\Commitment');
     }

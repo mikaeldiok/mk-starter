@@ -334,11 +334,9 @@ h1, h2, h3, h4, h5,
 .btn {
   cursor: pointer;
   border-radius: 0px;
-  border: 2px solid transparent;
   font-size: 14px;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: #999999;
   -webkit-box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5); }
   .btn.btn-hover-white:hover {
@@ -395,7 +393,7 @@ h1, h2, h3, h4, h5,
   margin-bottom: 30px;
   margin-left: 0px;
   margin-right: 20px;
-  color: #000000;
+  color: #fff;
   opacity: 1 !important;
 }
 
@@ -2004,3 +2002,108 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+.header-bg{
+  height:130px; width:100%;
+}
+
+.c-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50em;
+  width: 36px;
+  height: 36px;
+  font-size: 14.4px;
+}
+.c-avatar .c-avatar-status {
+  width: 10px;
+  height: 10px;
+}
+.c-avatar-img {
+  width: 100%;
+  height: auto;
+  border-radius: 50em;
+}
+.c-avatar-status {
+  position: absolute;
+  bottom: 0;
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 50em;
+}
+html:not([dir="rtl"]) .c-avatar-status {
+  right: 0;
+}
+[dir="rtl"] .c-avatar-status {
+  left: 0;
+}
+
+.c-avatar-sm {
+  width: 24px;
+  height: 24px;
+  font-size: 9.6px;
+}
+.c-avatar-sm .c-avatar-status {
+  width: 8px;
+  height: 8px;
+}
+.c-avatar-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 19.2px;
+}
+.c-avatar-lg .c-avatar-status {
+  width: 12px;
+  height: 12px;
+}
+.c-avatar-xl {
+  width: 64px;
+  height: 64px;
+  font-size: 25.6px;
+}
+.c-avatar-xl .c-avatar-status {
+  width: 14px;
+  height: 14px;
+}
+.c-avatars-stack {
+  display: flex;
+}
+.c-avatars-stack .c-avatar {
+  margin-right: -18px;
+  transition: margin-right 0.3s;
+}
+.c-avatars-stack .c-avatar:hover {
+  margin-right: 0;
+}
+.c-avatars-stack .c-avatar-sm {
+  margin-right: -12px;
+}
+.c-avatars-stack .c-avatar-lg {
+  margin-right: -24px;
+}
+.c-avatars-stack .c-avatar-xl {
+  margin-right: -32px;
+}
+.c-avatar-rounded {
+  border-radius: 0.25rem;
+}
+.c-avatar-square {
+  border-radius: 0;
+}
+
+.btn-orange{
+  background-color: #e58500;
+}
+
+.btn.btn-orange.btn-outline-orange {
+  border: 2px solid #e58500;
+  background: transparent;
+  color: #e58500; 
+}
+
+.btn.btn-orange.btn-outline-orange:hover {
+  border: 2px solid transparent;
+  background: #8b187e;
+  color: #000; }
