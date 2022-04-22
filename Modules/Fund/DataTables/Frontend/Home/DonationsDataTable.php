@@ -30,9 +30,9 @@ class DonationsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('donator.donator_bank_account',function($data){
+            ->editColumn('donator_bank_account',function($data){
 
-                return  "<strong>".$this->hideStringStatic($data->donator->donator_bank_account)."</strong><br>".$data->donator->donator_bank_name;
+                return  "<strong>".$this->hideStringStatic($data->donator_bank_account)."</strong><br>".$data->donator_bank_name;
             })
             ->editColumn('amount',function($data){
                 return ' Rp. '.number_format($data->amount ?? 0 , 0, ',', '.');
@@ -44,7 +44,7 @@ class DonationsDataTable extends DataTable
 
                 return $formated_date;
             })
-            ->rawColumns(['donator.donator_bank_account']);
+            ->rawColumns(['donator_bank_account']);
     }
 
     /**
@@ -71,12 +71,13 @@ class DonationsDataTable extends DataTable
      */
     public function html()
     {
-        $id = 0;
+        $created_at = 5;
         return $this->builder()
                 ->setTableId('donations-table')
                 ->columns($this->getColumns())
                 ->minifiedAjax()
                 ->dom(config('mk-datatables.mk-dom-frontend-donations'))
+                ->orderBy($created_at)
                 ->buttons(
                     Button::make('export'),
                     Button::make('print'),
@@ -103,8 +104,9 @@ class DonationsDataTable extends DataTable
             Column::make('id')->hidden(),
             Column::make('donation_date')->title("Tanggal"),
             Column::make('amount'),
-            Column::make('donator.donator_bank_name')->hidden()->title("Bank"),
-            Column::make('donator.donator_bank_account')->title("Rekening"),
+            Column::make('donator_bank_name')->hidden()->title("Bank"),
+            Column::make('donator_bank_account')->title("Rekening"),
+            Column::make('created_at')->hidden(),
         ];
     }
 
@@ -119,10 +121,14 @@ class DonationsDataTable extends DataTable
     }
 
     protected function hideStringStatic($string, $start_mod = 1, $length_mod = 1){
-        $length = strlen($string) - floor(strlen($string) / 2) - $length_mod;
-        $start = floor($length / 2) + $start_mod;
-        $replacement = str_repeat('*', $length);
-        return substr_replace($string, $replacement, $start, $length);
+        if(strlen($string)){
+            $length = strlen($string) - floor(strlen($string) / 2) - $length_mod;
+            $start = floor($length / 2) + $start_mod;
+            $replacement = str_repeat('*', $length);
+            return substr_replace($string, $replacement, $start, $length);
+        }else{
+            return "*";
+        }
     }
 
 
@@ -132,9 +138,13 @@ class DonationsDataTable extends DataTable
      * @return string
      */
     protected function hideStringDynamic($string){
-        $length = strlen($string) - floor(strlen($string) / 2);
-        $start = floor($length / 2);
-        $replacement = str_repeat('*', $length);
-        return substr_replace($string, $replacement, $start, $length);
+        if(strlen($string)){
+            $length = strlen($string) - floor(strlen($string) / 2);
+            $start = floor($length / 2);
+            $replacement = str_repeat('*', $length);
+            return substr_replace($string, $replacement, $start, $length);
+        }else{
+            return "*";
+        }
     }
 }

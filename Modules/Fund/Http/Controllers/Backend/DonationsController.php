@@ -110,10 +110,11 @@ class DonationsController extends Controller
         $options_data = $options->data;
 
         $donators = $options_data['donators'];
+        $bank_names = $options_data['bank_names'];
 
         return view(
             "fund::backend.$module_name.create",
-            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','donators')
+            compact('module_title', 'module_name', 'module_icon', 'module_action', 'module_name_singular','donators','bank_names')
         );
     }
 
@@ -201,10 +202,11 @@ class DonationsController extends Controller
         $options = $this->donationService->prepareOptions();
 
         $donators = $options['donators'];
+        $bank_names = $options_data['bank_names'];
 
         return view(
             "fund::backend.$module_name.edit",
-            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'donators')
+            compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'donators','bank_names')
         );
     }
 

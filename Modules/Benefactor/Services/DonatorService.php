@@ -63,6 +63,20 @@ class DonatorService{
         );
     }
 
+
+    public function get_donator($request){
+
+        $id = $request["id"];
+
+        $donator =$this->donatorRepository->with(['user'])->findOrFail($id);
+        
+        return (object) array(
+            'error'=> false,            
+            'message'=> '',
+            'data'=> $donator,
+        );
+    }
+
     public function getList(){
 
         $donator =$this->donatorRepository->query()->orderBy('order','asc')->get();

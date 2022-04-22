@@ -290,7 +290,16 @@ class DonationService{
         
         $donators = $this->donatorRepository->getDonatorsWithUser()->pluck('user.name','id');
 
+        $bank_names= [];
+
+        $raw_banks = config('banks');
+
+        foreach($raw_banks as $raw_bank){
+            $bank_names = Arr::add($bank_names, $raw_bank['name'], $raw_bank['name'] );
+        }
+
         $options = array(
+            'bank_names'    => $bank_names,
             'donators' => $donators,
         );
 

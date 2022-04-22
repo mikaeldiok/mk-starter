@@ -417,4 +417,25 @@ class DonatorsController extends Controller
         
         return redirect("admin/$module_name");
     }
+
+    /**
+     * FOr getting donator data via ajax
+     *
+     * @return Response
+     */
+    public function get_donator(Request $request)
+    {
+        $module_title = $this->module_title;
+        $module_name = $this->module_name;
+        $module_path = $this->module_path;
+        $module_icon = $this->module_icon;
+        $module_model = $this->module_model;
+        $module_name_singular = Str::singular($module_name);
+
+        $module_action = 'List';
+
+        $response = $this->donatorService->get_donator($request);
+
+        return response()->json($response);
+    }
 }
