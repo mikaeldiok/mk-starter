@@ -4,14 +4,14 @@
             <?php
             $field_name = 'donator_id';
             $field_data_id = 'donator_id';
-            $field_lable = __("fund::$module_name.$field_name");
+            $field_lable = __("fund::$module_name.$field_name")." (Jika donasi berasal dari user)";
             $field_placeholder = __("Select an option");
             $required = "";
             $select_options = $donators;
-            ?>
+            ?>                
             {{ html()->label($field_lable, $field_name) }} {!! fielf_required($required) !!}
             {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}
-            <button type="button" class="btn btn-warning" id="donator_select"><i class="fas fa-reply"></i> select</button>
+            <button type="button" class="btn btn-primary my-2" id="donator_select"><i class="fa fa-check"></i> select</button>
         </div>
     </div>
 </div>
@@ -131,10 +131,9 @@
                     },
                     success: function(result) {
                         if(result.error){
-                            alert('Whoopss...', data.message, "error");
+                            Swal.fire('Whoopss...', result.message, "error");
                         }else{
                             donator = result.data;
-                            alert(JSON.stringify(donator));
                             $('#donator_name').val(donator.user.name);
                             $('#donator_bank_account').val(donator.donator_bank_account);
                             $('#donator_bank_name').val(donator.donator_bank_name);
@@ -142,12 +141,11 @@
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {
-                        alert('AJAX ERROR ! Check the console !');
-                        console.error(errorThrown);
+                        Swal.fire('Terjadi Kesalahan, Silakan coba beberapa saaat lagi!');
                     }
                 });
             }else{
-                alert('Silakan pilih donatur terlebh dahulu');
+                Swal.fire('Silakan pilih donatur terlebh dahulu');
             }
         });
     });
