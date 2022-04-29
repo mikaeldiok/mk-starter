@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Modules\Fund\DataTables\Frontend\Home\DonationsDataTable;
 
 class FrontendController extends Controller
 {
@@ -11,11 +12,18 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(DonationsDataTable $dataTable)
     {
         $body_class = '';
 
-        return view('frontend.index', compact('body_class'));
+        $donation_model = "Modules\Fund\Entities\Donation";
+
+        $donations = $donation_model::paginate();
+
+        return $dataTable->render("frontend.index",
+            compact('body_class')
+        );
+
     }
 
     /**

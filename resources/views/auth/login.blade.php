@@ -4,34 +4,27 @@
 
 @section('content')
 
-<div class="main-content">
+<div class="main-content bg-sunset">
 
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header py-7 py-lg-8 pt-lg-9">
         <div class="container">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-                        <h1 class="text-white">@lang('Welcome')</h1>
+                    <div class="col-xl-5 col-lg-6 col-md-8 px-5 py-5">
+                        <h1 class="text-white">@lang('Selamat Datang')</h1>
                         <p class="text-lead text-white">
-                            @lang("Use these awesome forms to login or create new account.")
+                            @lang("Silakan masuk dengan email dan password anda")
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-            </svg>
         </div>
     </div>
 
     <div class="container mt--9 pb-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
-                <div class="card bg-secondary border border-soft">
-
-                    @include('auth.social_login_buttons')
+                <div class="card bg-light border border-soft">
 
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
@@ -96,6 +89,9 @@
                                     @lang('Submit')
                                 </button>
                             </div>
+                            <div class="text-center text-muted m-4">
+                                <small>Belum Punya akun? </small><a href={{route('register')}}><u>DAFTAR DISINI</u></a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -105,13 +101,6 @@
                             <small>{{ __('Forgot Your Password?') }}</small>
                         </a>
                     </div>
-                    @if (Route::has('register'))
-                    <div class="col-6 text-right">
-                        <a href="{{ route('register') }}" class="text-gray">
-                            <small>Create new account</small>
-                        </a>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>

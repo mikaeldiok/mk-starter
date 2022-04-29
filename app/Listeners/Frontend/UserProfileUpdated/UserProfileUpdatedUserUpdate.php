@@ -6,7 +6,7 @@ use App\Events\Frontend\UserProfileUpdated;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserProfileUpdatedUserUpdate implements ShouldQueue
+class UserProfileUpdatedUserUpdate
 {
     /**
      * Create the event listener.

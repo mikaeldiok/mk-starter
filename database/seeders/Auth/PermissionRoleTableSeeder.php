@@ -59,6 +59,21 @@ class PermissionRoleTableSeeder extends Seeder
         ]);
         echo "\n _Comments_ Permissions Created.";
 
+        \Artisan::call('auth:permission', [
+            'name' => 'donators',
+        ]);
+        echo "\n _Donators_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
+            'name' => 'commitments',
+        ]);
+        echo "\n _Commitments_ Permissions Created.";
+
+        \Artisan::call('auth:permission', [
+            'name' => 'donations',
+        ]);
+        echo "\n _Donations_ Permissions Created.";
+
         echo "\n\n";
 
         // Assign Permissions to Roles

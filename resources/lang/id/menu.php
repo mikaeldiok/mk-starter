@@ -18,10 +18,15 @@ return [
         'tiers'             => 'Kelas / Jurusan',
     ],
 
-    'message' => [
-        'title'             => 'Pesan',
-        'template'          => 'Template Pesan',
-        'message_tracker'   => 'Lacak Pesan',
+    'benefactor' => [
+        'title'             => 'Donatur',
+        'donators'          => 'Donatur',
+        'commitments'        => 'Komitmen',
+    ],
+
+    'fund' => [
+        'title'             => 'Dana',
+        'donations'           => 'Donasi',
     ],
 
     'blog' => [

@@ -7,7 +7,7 @@ use App\Models\Userprofile;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Log;
 
-class UserCreatedProfileCreate implements ShouldQueue
+class UserCreatedProfileCreate
 {
     /**
      * Create the event listener.
@@ -33,6 +33,7 @@ class UserCreatedProfileCreate implements ShouldQueue
         $userprofile = new Userprofile();
         $userprofile->user_id = $user->id;
         $userprofile->name = $user->name;
+        $userprofile->address = $user->address;
         $userprofile->first_name = $user->first_name;
         $userprofile->last_name = $user->last_name;
         $userprofile->username = $user->username;
@@ -47,6 +48,5 @@ class UserCreatedProfileCreate implements ShouldQueue
         Log::info('UserCreatedProfileCreate: '.$userprofile->name.'(Id:'.$userprofile->user_id.')');
 
         // Clear Cache
-        \Artisan::call('cache:clear');
     }
 }

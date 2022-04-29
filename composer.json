@@ -19,6 +19,7 @@
         "laravel/slack-notification-channel": "^2.2",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.4",
+        "laravel/ui": "^3.3",
         "lavary/laravel-menu": "^1.7",
         "livewire/livewire": "^2.6",
         "maatwebsite/excel": "^3.1",

@@ -72,12 +72,10 @@ mix.scripts(
         "node_modules/popper.js/dist/umd/popper.min.js",
         "node_modules/bootstrap/dist/js/bootstrap.min.js",
         "node_modules/headroom.js/dist/headroom.min.js",
-
         "node_modules/onscreen/dist/on-screen.umd.min.js",
         "node_modules/waypoints/lib/jquery.waypoints.min.js",
         "node_modules/jarallax/dist/jarallax.min.js",
         "node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js",
-        "public/vendor/impact-design/front/assets/js/front.js",
         "resources/js/custom-frontend.js"
     ],
     "public/js/frontend.js"

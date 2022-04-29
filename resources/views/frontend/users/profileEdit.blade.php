@@ -4,17 +4,21 @@
 
 @section('content')
 
-<section class="section-header bg-primary text-white pb-7 pb-lg-11">
+<div class="block-31" style="position: relative;">
+  <div class="background-1 header-bg"></div>
+</div>
+
+<section class="section-header text-white pb-7 pb-lg-11">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-                <h1 class="display-2 mb-4">
-                    {{$$module_name_singular->name}}
+                <h1 class="display-3 mt-4 mb-4">
+                    Edit Profil
                     
                     @auth
                     @if(auth()->user()->id == $$module_name_singular->id)
                     <small>
-                        <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-secondary btn-sm">Show</a>
+                        <a href="{{ route('frontend.users.profile', $$module_name_singular->id) }}" class="btn btn-danger btn-sm">Back</a>
                     </small>
                     @endif
                     @endauth
@@ -221,7 +225,7 @@
                             {{ html()->label(__('labels.backend.users.fields.password'))->class('col-md-2 form-control-label')->for('password') }}
 
                             <div class="col-md-10">
-                                <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-primary btn-sm"><i class="now-ui-icons objects_key-25"></i>&nbsp;Change password</a>
+                                <a href="{{ route('frontend.users.changePassword', $$module_name_singular->id) }}" class="btn btn-outline-danger"><i class="now-ui-icons objects_key-25"></i>&nbsp;Change password</a>
                             </div>
                         </div>
 
