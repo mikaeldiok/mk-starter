@@ -40,19 +40,6 @@ class GenerateMenus
             ->link->attr([
                 'class' => 'c-sidebar-nav-link',
             ]);
-            
-            $menu->add('<i class="fas fa-handshake c-sidebar-nav-icon"></i> '.trans('menu.benefactor.commitments'), [
-                'route' => 'backend.commitments.index',
-                'class' => 'c-sidebar-nav-item',
-            ])
-            ->data([
-                'order' => 4,
-                'activematches' => ['admin/commitments*'],
-                'permission' => ['view_commitments'],
-            ])
-            ->link->attr([
-                'class' => 'c-sidebar-nav-link',
-            ]);
         })->sortBy('order');
 
         return $next($request);

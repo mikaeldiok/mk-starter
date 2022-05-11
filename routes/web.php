@@ -28,9 +28,13 @@ Route::get('language/{language}', 'LanguageController@switch')->name('language.s
 */
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontendController@index')->name('index');
-    Route::get('home', 'FrontendController@index')->name('home');
     Route::get('privacy', 'FrontendController@privacy')->name('privacy');
     Route::get('terms', 'FrontendController@terms')->name('terms');
+
+    Route::group(['as' => 'page.'], function () {
+        Route::get('about', 'FrontendController@about')->name('about');
+        Route::get('gallery', 'FrontendController@gallery')->name('gallery');
+    });
 
     Route::group(['middleware' => ['auth']], function () {
         /*

@@ -30,30 +30,10 @@
                         </ul>
                         <div class="tab-content mt-4" id="myTabContent">
                             <div class="tab-pane fade show active" id="donasi" role="tabpanel" aria-labelledby="donasi-tab">
-                                @if($$module_name_singular->donations->count() > 0)
-                                    <?php
-                                        //Total Donations
-                                        $total = 0;
-                                        foreach($$module_name_singular->donations as $donation){
-                                            $total += $donation->amount;
-                                        }
-                                    ?>        
-                                    <tr>
-                                        <td>
-                                            <strong>Total Donasi</strong>  
-                                        </td>
-                                        <td> 
-                                            <h4>Rp. {{number_format($total, 2, ',', '.')}}</h4>                         
-                                        </td>
-                                    </tr>
-
-                                    {{ $dataTable->table() }}
-                                @else
-                                    <h1>Yuk Mulai Berdonasi!</h1>
-                                @endif
+                                first user tab
                             </div>
                             <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                                @include("benefactor::frontend.commitments.index")
+                                next tab
                             </div>
                         </div>
                     </div>
@@ -62,25 +42,12 @@
         </div>
     </div>
 
-
-    @include('benefactor::frontend.commitments.edit-modal')
-
 </section>
 
 @endsection
 
 @push ('after-styles')
-<!-- DataTables Fund and Extensions -->
-<link rel="stylesheet" href="{{ asset('vendor/datatable/datatables.min.css') }}">
-
 @endpush
 
 @push ('after-scripts')
-
-<script type="text/javascript" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
-        
-<script src="/vendor/datatables/buttons.server-side.js"></script>
-
-<!-- DataTables Fund and Extensions -->
-{!! $dataTable->scripts()  !!}
 @endpush

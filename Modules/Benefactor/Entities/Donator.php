@@ -92,10 +92,6 @@ class Donator extends UserModel implements HasMedia
                     ]);
     }
 
-    public function commitments(){
-        return $this->hasMany('Modules\Benefactor\Entities\Commitment');
-    }
-
     /**
      * Create Converted copies of uploaded images.
      */

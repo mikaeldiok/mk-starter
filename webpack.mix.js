@@ -59,7 +59,19 @@ mix.scripts(
 mix.styles(
     [
         "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-        "public/vendor/impact-design/front/css/front.css",
+        
+        "resources/css/Frontend/open-iconic-bootstrap.min.css",
+        "resources/css/Frontend/animate.css",
+        "resources/css/Frontend/owl.carousel.min.css",
+        "resources/css/Frontend/owl.theme.default.min.css",
+        "resources/css/Frontend/magnific-popup.css",
+        "resources/css/Frontend/aos.css",
+        "resources/css/Frontend/bootstrap-datepicker.css",
+        "resources/css/Frontend/jquery.timepicker.css",
+        "resources/css/Frontend/flaticon.css",
+        "resources/css/Frontend/fancybox.min.css",
+        "resources/css/Frontend/bootstrap.css",
+
         "resources/css/custom-frontend.css",
     ],
     "public/css/frontend.css"
@@ -76,6 +88,20 @@ mix.scripts(
         "node_modules/waypoints/lib/jquery.waypoints.min.js",
         "node_modules/jarallax/dist/jarallax.min.js",
         "node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js",
+
+        "resources/js/Frontend/jquery-migrate-3.0.1.min.js",
+        "resources/js/Frontend/popper.min.js",
+        "resources/js/Frontend/jquery.easing.1.3.js",
+        "resources/js/Frontend/jquery.waypoints.min.js",
+        "resources/js/Frontend/jquery.stellar.min.js",
+        "resources/js/Frontend/owl.carousel.min.js",
+        "resources/js/Frontend/jquery.magnific-popup.min.js",
+        "resources/js/Frontend/bootstrap-datepicker.js",
+        "resources/js/Frontend/jquery.fancybox.min.js",
+        "resources/js/Frontend/aos.js",
+        "resources/js/Frontend/jquery.animateNumber.min.js",
+        "resources/js/Frontend/google-map.js",
+
         "resources/js/custom-frontend.js"
     ],
     "public/js/frontend.js"

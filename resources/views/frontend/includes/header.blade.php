@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">PEDULI</a>
+    <a class="navbar-brand" href="/">MK STARTER</a>
     <a class="nav-button ml-auto d-md-block d-lg-none" href="{{ route('frontend.donators.index') }}"><i class="fa-solid fa-2x fa-home"></i></a></li>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="oi oi-menu"></span> Menu
@@ -29,9 +29,9 @@
             </ul>
           </div>
         @endif
-        <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li class="nav-item {{Route::currentRouteName() == 'frontend.index' ? 'active' : ''}}"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item {{Route::currentRouteName() == 'frontend.page.about' ? 'active' : ''}}"><a href="{{route('frontend.page.about')}}" class="nav-link">About</a></li>
+        <li class="nav-item {{Route::currentRouteName() == 'frontend.page.gallery' ? 'active' : ''}}"><a href="{{route('frontend.page.gallery')}}" class="nav-link">Gallery</a></li>
         @auth
           @if(Auth::user()->hasRole("user") ||  !Auth::user()->can('view_backend'))
             <li class="nav-item d-none d-lg-block"><a href="{{route('frontend.donators.index')}}" class="btn btn-sm btn-orange nav-button"><i class="fa-solid fa-home"></i> Area Donatur</a></li>

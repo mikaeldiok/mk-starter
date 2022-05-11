@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49f3eae21f677ecdac45d24c0aced517",
+    "content-hash": "f9774e6243b8a7d719b3ee64292f9ca2",
     "packages": [
         {
             "name": "alexusmai/laravel-file-manager",
@@ -5194,27 +5194,27 @@
         },
         {
             "name": "spatie/laravel-html",
-            "version": "2.30.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-html.git",
-                "reference": "e7a9caa9b7d9f8a0bdf514a424034f74101de926"
+                "reference": "c9ef14aff3347105db9a76f2c0dfc99329483099"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/e7a9caa9b7d9f8a0bdf514a424034f74101de926",
-                "reference": "e7a9caa9b7d9f8a0bdf514a424034f74101de926",
+                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/c9ef14aff3347105db9a76f2c0dfc99329483099",
+                "reference": "c9ef14aff3347105db9a76f2c0dfc99329483099",
                 "shasum": ""
             },
             "require": {
-                "illuminate/http": "^6.0|^7.0|^8.0",
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "php": "^8.0|^7.2"
+                "illuminate/http": "^9.0|^8.0",
+                "illuminate/support": "^9.0|^8.0",
+                "php": "^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.3",
-                "orchestra/testbench": "^4.0|^5.0|^6.0",
-                "phpunit/phpunit": "^8.0|^9.0"
+                "orchestra/testbench": "^7.0|^6.23",
+                "phpunit/phpunit": "^9.4"
             },
             "type": "library",
             "extra": {
@@ -5228,12 +5228,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Spatie\\Html\\": "src"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Spatie\\Html\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5261,7 +5261,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-html/issues",
-                "source": "https://github.com/spatie/laravel-html/tree/2.30.0"
+                "source": "https://github.com/spatie/laravel-html/tree/3.1.0"
             },
             "funding": [
                 {
@@ -5269,7 +5269,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-07-09T07:26:20+00:00"
+            "time": "2022-01-14T08:29:37+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -12006,5 +12006,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }

@@ -11,7 +11,6 @@ use Log;
 use Auth;
 use Modules\Benefactor\Services\DonatorService;
 use Spatie\Activitylog\Models\Activity;
-use Modules\Fund\DataTables\Frontend\Donator\DonationsDataTable;
 
 class DonatorsController extends Controller
 {
@@ -45,7 +44,7 @@ class DonatorsController extends Controller
      *
      * @return Response
      */
-    public function index(DonationsDataTable $dataTable)
+    public function index()
     {
         $module_title = $this->module_title;
         $module_name = $this->module_name;
@@ -64,7 +63,7 @@ class DonatorsController extends Controller
         $connection = config('database.default');
         $driver = config("database.connections.{$connection}.driver");
        
-        return $dataTable->render(
+        return view(
             "benefactor::frontend.$module_name.index",
             compact('module_title', 'module_name', 'module_icon', 'module_name_singular', 'module_action', "$module_name_singular",'driver')
         );
