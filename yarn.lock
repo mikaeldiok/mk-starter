@@ -735,10 +735,10 @@
   "resolved" "https://registry.npmjs.org/@coreui/icons/-/icons-2.0.0-beta.5.tgz"
   "version" "2.0.0-beta.5"
 
-"@fortawesome/fontawesome-free@^5.13.1":
-  "integrity" "sha512-OfdMsF+ZQgdKHP9jUbmDcRrP0eX90XXrsXIdyjLbkmSBzmMXPABB8eobUJtivaupucYaByz6WNe1PI1JuYm3qA=="
-  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.14.0.tgz"
-  "version" "5.14.0"
+"@fortawesome/fontawesome-free@^6.*":
+  "integrity" "sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz"
+  "version" "6.1.1"
 
 "@fullhuman/postcss-purgecss@^2.1.2":
   "integrity" "sha512-qnKm5dIOyPGJ70kPZ5jiz0I9foVOic0j+cOzNDoo8KoCf6HjicIZ99UfO2OmE7vCYSKAAepEwJtNzpiiZAh9xw=="

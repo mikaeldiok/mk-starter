@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Events\Frontend\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Userprofile;
 use App\Models\UserProvider;
 use App\Providers\RouteServiceProvider;
 use Auth;
@@ -104,11 +105,11 @@ class SocialLoginController extends Controller
                 'email'       => $email,
             ]);
 
-            $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
-            $user->avatar = $media->getUrl();
-            $user->save();
-
-            event(new UserRegistered($user));
+            //USER AVATAR REMOVE
+            // $media = $user->addMediaFromUrl($socialUser->getAvatar())->toMediaCollection('users');
+            $user->avatar = "img/default-avatar.jpg";
+            
+            $userprofil = $this->createUserProfile($user);
 
             UserProvider::create([
                 'user_id'     => $user->id,
@@ -132,5 +133,29 @@ class SocialLoginController extends Controller
         $first_name = trim(preg_replace('#'.$last_name.'#', '', $name));
 
         return [$first_name, $last_name];
+    }
+
+
+    /**
+     * Create the profile
+     */
+    public function createUserProfile($user){
+
+        $userprofile = new Userprofile();
+        $userprofile->user_id = $user->id;
+        $userprofile->name = $user->name;
+        $userprofile->first_name = $user->first_name;
+        $userprofile->last_name = $user->last_name;
+        $userprofile->address = $user->address;
+        $userprofile->username = $user->username;
+        $userprofile->email = $user->email;
+        $userprofile->mobile = $user->mobile;
+        $userprofile->gender = $user->gender;
+        $userprofile->date_of_birth = $user->date_of_birth;
+        $userprofile->avatar = $user->avatar;
+        $userprofile->status = ($user->status > 0) ? $user->status : 0;
+        $userprofile->save();
+
+        return $userprofile;
     }
 }

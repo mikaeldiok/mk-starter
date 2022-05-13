@@ -34,11 +34,11 @@
         <li class="nav-item {{Route::currentRouteName() == 'frontend.page.gallery' ? 'active' : ''}}"><a href="{{route('frontend.page.gallery')}}" class="nav-link">Gallery</a></li>
         @auth
           @if(Auth::user()->hasRole("user") ||  !Auth::user()->can('view_backend'))
-            <li class="nav-item d-none d-lg-block"><a href="{{route('frontend.donators.index')}}" class="btn btn-sm btn-orange nav-button"><i class="fa-solid fa-home"></i> Area Donatur</a></li>
+            <!-- user only -->
           @endif
           <li class="dropdown d-none d-lg-block nav-button">
             <div class="dropdown show">
-              <a class="dropdown-toggle" role="button" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="dropdown-toggle nav-button" role="button" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="rounded-circle img-fluid float-left mx-2" src="{{asset(Auth::user()->avatar)}}" alt="Photo" height="30px" width="30px">
                   <spans style="font-size:20px">
                     Hi, {{Str::limit(Auth::user()->first_name,12)}} !
