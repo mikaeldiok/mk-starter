@@ -18,6 +18,12 @@ return [
         'tiers'             => 'Kelas / Jurusan',
     ],
 
+    'school' => [
+        'title'             => 'Sekolah',
+        'students'          => 'Siswa',
+        'cores'             => 'Data Sekolah',
+    ],
+
     'benefactor' => [
         'title'             => 'Donatur',
         'donators'          => 'Donatur',

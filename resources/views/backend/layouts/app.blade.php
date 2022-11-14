@@ -81,6 +81,11 @@
         
         <script src="/vendor/datatables/buttons.server-side.js"></script>
         
+        <script type="text/javascript" src="/js/bootstrap-multiselect.js"></script>
+        <script type="text/javascript" src="/js/jquery.validate.js"></script>
+        
+        <link rel="stylesheet" href="/css/bootstrap-multiselect.css" type="text/css"/>
+
         @livewireScripts
 
         @stack('after-scripts')

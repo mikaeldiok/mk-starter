@@ -2,6 +2,6 @@
     "Article": false,
     "Tag": false,
     "Comment": false,
-    "Core": false,
-    "Benefactor": true
+    "Core": true,
+    "School": true
 }

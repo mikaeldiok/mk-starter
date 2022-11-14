@@ -18,6 +18,11 @@ return [
         'tiers'             => 'Tiers',
     ],
 
+    'school' => [
+        'title'             => 'School',
+        'students'          => 'Students',
+    ],
+    
     'benefactor' => [
         'title'             => 'Benefactor',
         'donators'           => 'Donator',
