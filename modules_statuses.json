@@ -3,5 +3,6 @@
     "Tag": false,
     "Comment": false,
     "Core": true,
-    "School": true
+    "School": true,
+    "Mkstarter": true
 }

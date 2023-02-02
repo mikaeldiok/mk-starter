@@ -23,16 +23,6 @@ return [
         'students'          => 'Students',
     ],
     
-    'benefactor' => [
-        'title'             => 'Benefactor',
-        'donators'           => 'Donator',
-        'commitments'          => 'Commitment',
-    ],
-
-    'fund' => [
-        'title'             => 'Fund',
-        'donations'           => 'Donation',
-    ],
 
     'blog' => [
         'title'             => 'Blog',

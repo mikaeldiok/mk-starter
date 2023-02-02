@@ -24,16 +24,6 @@ return [
         'cores'             => 'Data Sekolah',
     ],
 
-    'benefactor' => [
-        'title'             => 'Donatur',
-        'donators'          => 'Donatur',
-        'commitments'        => 'Komitmen',
-    ],
-
-    'fund' => [
-        'title'             => 'Dana',
-        'donations'           => 'Donasi',
-    ],
 
     'blog' => [
         'title'             => 'Blog',

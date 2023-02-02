@@ -26,7 +26,7 @@
     <div class="container mt--9 pb-5">
 
         <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8">
+            <div class="col-lg-7 col-md-8">
                 <div class="card bg-light border border-soft">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center text-muted mb-4">
@@ -55,20 +55,35 @@
 
                         <form role="form" id="register" method="POST" action="{{ route('register') }}">
                             @csrf
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="{{ __('Nama Depan') }}" aria-label="first_name" aria-describedby="first_name" required>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="{{ __('Nama Depan') }}" aria-label="first_name" aria-describedby="first_name" required>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="{{ __('Nama Belakang') }}" aria-label="last_name" aria-describedby="last_name" required>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        <span class="input-group-text"><i class="fas fa-building"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="{{ __('Nama Belakang') }}" aria-label="last_name" aria-describedby="last_name" required>
+                                    <input type="text" class="form-control" id="corporation_name" name="corporation_name" value="{{ old('corporation_name') }}" placeholder="{{ __('Nama Perusahaan') }}" aria-label="first_name" aria-describedby="first_name" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,55 +91,16 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="mobile" name="mobile" value="{{ old('mobile') }}" placeholder="{{ __('Nomor Telepon') }}" aria-label="mobile" aria-describedby="mobile" required>
+                                    <input type="text" class="form-control" id="corporation_phone" name="corporation_phone" value="{{ old('corporation_phone') }}" placeholder="{{ __('Nomor Telepon (Perusahaan)') }}" aria-label="corporation_phone" aria-describedby="corporation_phone">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Jenis Donatur</span>
-                                    </div>
-                                    <?php
-                                        $field_name = 'donator_type';
-                                        $field_data_id = 'donator_type';
-                                        $field_lable = __("benefactor::donators.$field_name");
-                                        $field_placeholder = __("Select an option");
-                                        $required = "required";
-                                        $select_options = $donator_types;
-                                    ?>
-                                    {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}                           
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <div class="input-group input-group-merge input-group-alternative mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa-solid fa-house"></i></span>
                                     </div>
-                                    <textarea form="register" class="form-control" id="address" name="address" value="{{ old('address') }}" placeholder="{{ __('Alamat') }}" aria-label="address" aria-describedby="address" required></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Bank Donatur</i></span>
-                                    </div>
-                                    <?php
-                                        $field_name = 'donator_bank_name';
-                                        $field_data_id = 'donator_bank_name';
-                                        $field_lable = __("benefactor::donators.$field_name");
-                                        $field_placeholder = __("Select an option");
-                                        $required = "required";
-                                        $select_options = $banks;
-                                    ?>
-                                    {{ html()->select($field_data_id, $select_options)->placeholder($field_placeholder)->class('form-control select2')->attributes(["$required"]) }}    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group input-group-merge input-group-alternative mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">No. Rekening</span>
-                                    </div>
-                                    <input type="text" class="form-control" id="donator_bank_account" name="donator_bank_account" value="{{ old('donator_bank_account') }}" placeholder="{{ __('No. Rekening') }}" aria-label="donator_bank_account" aria-describedby="donator_bank_account" required>
+                                    <textarea form="register" class="form-control" id="corporation_address" name="corporation_address" value="{{ old('corporation_address') }}" placeholder="{{ __('Alamat Perusahaan') }}" aria-label="corporation_address" aria-describedby="corporation_address" required></textarea>
                                 </div>
                             </div>
                             <hr>

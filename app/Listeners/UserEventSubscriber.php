@@ -12,28 +12,23 @@ class UserEventSubscriber
      */
     public function handleUserLogin($event)
     {
-        if(\Auth::guard('donator')->check()){
+        try {
             $user = $event->user;
+            $user_profile = $user->userprofile;
 
-            Log::debug('Login Success: '.$user->user->name.', IP:'.request()->getClientIp());
-        }else{
-            try {
-                $user = $event->user;
-                $user_profile = $user->userprofile;
-    
-                /*
-                 * Updating user profile data after successful login
-                 */
-                $user_profile->last_login = Carbon::now();
-                $user_profile->last_ip = request()->getClientIp();
-                $user_profile->login_count = $user_profile->login_count + 1;
-                $user_profile->save();
-            } catch (\Exception $e) {
-                Log::error($e);
-            }
-    
-            Log::debug('Login Success: '.$user->name.', IP:'.request()->getClientIp());
+            /*
+                * Updating user profile data after successful login
+                */
+            $user_profile->last_login = Carbon::now();
+            $user_profile->last_ip = request()->getClientIp();
+            $user_profile->login_count = $user_profile->login_count + 1;
+            $user_profile->save();
+        } catch (\Exception $e) {
+            Log::error($e);
         }
+
+        Log::info('Login Success: '.$user->name.', IP:'.request()->getClientIp());
+        
     }
 
     /**
@@ -41,15 +36,9 @@ class UserEventSubscriber
      */
     public function handleUserLogout($event)
     {
-        if(\Auth::guard('donator')->check()){
-            $user = $event->user;
+        $user = $event->user;
 
-            Log::warning('Logout Success: '.$user->donator_name.', IP:'.request()->getClientIp());
-        }else{
-            $user = $event->user;
-    
-            Log::warning('Logout Success. '.$user->name.', IP:'.request()->getClientIp());
-        }
+        Log::warning('Logout Success. '.$user->name.', IP:'.request()->getClientIp());
     }
 
     /**

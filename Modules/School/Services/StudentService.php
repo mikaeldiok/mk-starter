@@ -215,7 +215,6 @@ class StudentService{
                 $studentObject->certificate = implode(',', $studentObject->certificate); 
             }
 
-            \Log::debug("sini". $studentObject);
             $studentObjectArray = $studentObject->toArray();
 
             $student = Student::create($studentObjectArray);

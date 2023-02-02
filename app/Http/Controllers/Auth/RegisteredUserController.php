@@ -11,17 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Flash;
 use Illuminate\Support\Facades\Hash;
-use Modules\Benefactor\Services\DonatorService;
 
 class RegisteredUserController extends Controller
 {
-    protected $donatorService;
-
-    public function __construct(DonatorService $donatorService)
-    {
-        $this->donatorService = $donatorService;
-    }
-    
     /**
      * Display the registration view.
      *
@@ -30,14 +22,11 @@ class RegisteredUserController extends Controller
     public function create()
     {
 
-        $options = $this->donatorService->create();
-
         $options_data = $options->data;
 
         $banks = $options_data['banks'];
-        $donator_types = $options_data['donator_types'];
 
-        return view('auth.register', compact('banks','donator_types'));
+        return view('auth.register', compact('banks'));
     }
 
     /**
@@ -59,8 +48,6 @@ class RegisteredUserController extends Controller
         ]);
 
         $request->is_register = 1;
-        $donator = $this->donatorService->store($request);
-        $user = $donator->user;
 
         event(new UserRegistered($user));
         event(new Registered($user));

@@ -36,12 +36,6 @@ return [
     */
 
     'guards' => [
-        'donator' => [
-            'redirectTo' => 'benefactor::frontend.donators.index',
-            'driver'     => 'session',
-            'provider'   => 'donators',
-        ],
-
         'web' => [
             'driver'   => 'session',
             'provider' => 'users',
@@ -82,10 +76,6 @@ return [
         //     'table' => 'users',
         // ],
 
-        'donators' => [
-            'driver' => 'eloquent',
-            'model' => Modules\Benefactor\Entities\Donator::class,
-        ],
     ],
 
     /*
@@ -106,12 +96,6 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table'    => 'password_resets',
-            'expire'   => 60,
-            'throttle' => 60,
-        ],
-        'donators' => [
-            'provider' => 'donators',
             'table'    => 'password_resets',
             'expire'   => 60,
             'throttle' => 60,

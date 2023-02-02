@@ -54,8 +54,6 @@ class AuthenticatedSessionController extends Controller
 
             if($canViewBackend){
                 $redirectTo = '/admin';
-            }else{
-                $redirectTo = '/donators/home';
             }
         }
 
